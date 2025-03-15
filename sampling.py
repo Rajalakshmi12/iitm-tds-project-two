@@ -1,6 +1,8 @@
+import os
 from flask import Flask, request, render_template
 import numpy as np
-import os
+
+
 
 app = Flask(__name__)
 
