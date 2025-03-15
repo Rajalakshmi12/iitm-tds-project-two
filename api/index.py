@@ -16,7 +16,7 @@ app.add_middleware(
 )
 
 # Landing page with input and output fields for question and answer
-@app.get("/", response_class=HTMLResponse)
+@app.get("/api/", response_class=HTMLResponse)
 async def read_root():
     return """
     <html>
@@ -35,27 +35,8 @@ async def read_root():
     """
 
 # Endpoint to process the question and return an answer
-@app.get("/get_answer/", response_class=HTMLResponse)
+@app.get("/api/get_answer/", response_class=HTMLResponse)
 async def get_answer(question: str = Query(..., title="Your Question")):
     # For now, return a simple placeholder answer
     answer = f"You asked: {question}. This is a placeholder answer."
-    return f"""
-    <html>
-        <head>
-            <title>Question Answering App</title>
-        </head>
-        <body>
-            <h1>Welcome to the FastAPI Question Answering App!</h1>
-            <form action="/get_answer/" method="get">
-                <label for="question">Enter your question:</label><br>
-                <input type="text" id="question" name="question" required><br><br>
-                <input type="submit" value="Get Answer">
-            </form>
-            <hr>
-            <h2>Answer:</h2>
-            <div id="answer">
-                <p>{answer}</p>
-            </div>
-        </body>
-    </html>
-    """
+    return {"answer": "1234567890"}
