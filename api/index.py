@@ -2,6 +2,7 @@ from fastapi import FastAPI
 from fastapi.responses import HTMLResponse
 from fastapi import Query
 from fastapi.middleware.cors import CORSMiddleware
+from fastapi.responses import JSONResponse
 
 
 app = FastAPI()
@@ -35,9 +36,7 @@ async def read_root():
     """
 
 # Endpoint to process the question and return an answer
-@app.get("/api/get_answer/", response_class=HTMLResponse)
+@app.get("/api/get_answer/", response_class=JSONResponse)
 async def get_answer(question: str = Query(..., title="Your Question")):
-    # For now, return a simple placeholder answer
-    answer = f"You asked: {question}. This is a placeholder answer."
-    
-    return answer
+    answer = question
+    return JSONResponse(content={"answer":answer})
