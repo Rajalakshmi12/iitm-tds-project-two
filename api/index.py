@@ -37,7 +37,7 @@ def home():
 #     """
         
 # Landing page with input and output fields for question and answer
-@app.get("/api/", response_class=HTMLResponse)
+@app.route("/api/", response_class=HTMLResponse)
 async def read_root():
     return """
     <html>
