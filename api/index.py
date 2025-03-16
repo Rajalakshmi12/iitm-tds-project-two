@@ -18,14 +18,19 @@ app.add_middleware(
     allow_headers=["*"]    
 )
 
+# Load OpenAI API Key securely
+OPENAI_API_KEY = os.getenv("OPENAI_API_KEY")
+if not OPENAI_API_KEY:
+    raise ValueError("Missing OpenAI API key! Set it as an environment variable.")
+
+
 # Landing page with input and output fields for question and answer
 @app.get("/api/", response_class=HTMLResponse)
 async def read_root():
-    OPENAI_API_KEY = os.getenv("OPENAI_API_KEY")
     return """
     <html>
         <head>
-            <title>Question Answering App  {OPENAI_API_KEY} </title>
+            <title>Question Answering App </title>
         </head>
         <body>
             <h1>Welcome to the FastAPI Question Answering App!</h1>
