@@ -3,6 +3,8 @@ from fastapi.responses import HTMLResponse
 from fastapi import Query
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import JSONResponse
+import os
+import openai
 
 
 app = FastAPI()
@@ -19,10 +21,11 @@ app.add_middleware(
 # Landing page with input and output fields for question and answer
 @app.get("/api/", response_class=HTMLResponse)
 async def read_root():
+    OPENAI_API_KEY = os.getenv("OPENAI_API_KEY")
     return """
     <html>
         <head>
-            <title>Question Answering App</title>
+            <title>Question Answering App  {OPENAI_API_KEY} </title>
         </head>
         <body>
             <h1>Welcome to the FastAPI Question Answering App!</h1>
