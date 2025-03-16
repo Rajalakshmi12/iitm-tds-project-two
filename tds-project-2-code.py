@@ -27,7 +27,7 @@ def generate_llm_answer(question: str) -> str:
         response = openai.ChatCompletion.create(
             model="gpt-4",
             messages=[{"role": "system", "content": "You are an AI assistant trained to answer graded assignment questions."},
-                      {"role": "user", "content": question}],
+                    {"role": "user", "content": question}],
             max_tokens=200
         )
         return response['choices'][0]['message']['content']
