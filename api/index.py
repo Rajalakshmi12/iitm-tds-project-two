@@ -25,8 +25,8 @@ if not OPENAI_API_KEY:
     raise ValueError("Missing OpenAI API key! Set it as an environment variable.")
 
 @app.route("/")
-async def home():
-    return redirect("/api")
+def home():
+    return redirect("/api", code=307)
 
 # @app.get("/", response_class=HTMLResponse)
 # async def welcome():
