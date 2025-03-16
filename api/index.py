@@ -26,7 +26,7 @@ if not OPENAI_API_KEY:
 
 @app.route("/")
 def home():
-    return redirect("/helloworld")
+    return redirect("/api")
 
 # @app.get("/", response_class=HTMLResponse)
 # async def welcome():
