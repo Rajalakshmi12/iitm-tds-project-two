@@ -25,7 +25,7 @@ async def read_root():
         </head>
         <body>
             <h1>Welcome to the FastAPI Question Answering App!</h1>
-            <form action="/get_answer/" method="get">
+            <form action="api/get_answer/" method="get">
                 <label for="question">Enter your question:</label><br>
                 <input type="text" id="question" name="question" required><br><br>
                 <input type="submit" value="Get Answer">
