@@ -23,15 +23,11 @@ OPENAI_API_KEY = os.getenv("OPENAI_API_KEY")
 if not OPENAI_API_KEY:
     raise ValueError("Missing OpenAI API key! Set it as an environment variable.")
 
+@app.route("/")
+def home():
+    return jsonify({"message":"Redirecting to /api"}),307,{'Location': '/docs'}
 
 
-@app.get("/", response_class=HTMLResponse)
-async def welcome():
-    return """
-    <html>
-        <h1>{OPENAI_API_KEY}Welcome to TDS Project 2 !</h1>
-    </html>
-    """
         
 # Landing page with input and output fields for question and answer
 @app.get("/api/", response_class=HTMLResponse)
