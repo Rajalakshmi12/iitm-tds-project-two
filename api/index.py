@@ -28,7 +28,7 @@ if not OPENAI_API_KEY:
 async def welcome():
     return f'''
     <html>
-        <h1>{OPENAI_API_KEY} - Welcome to TDS Project 2 !</h1>
+        <h1>Welcome to TDS Project 2 !</h1>
     </html>
     '''
         
