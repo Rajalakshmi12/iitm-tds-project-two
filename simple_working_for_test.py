@@ -7,6 +7,10 @@ app = FastAPI()
 async def root():
     return "yes"
 
+@app.get("/api/", response_class=HTMLResponse)
+async def root():
+    return "yes api"
+
 
 # vercel file
 # {
