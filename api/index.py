@@ -6,6 +6,7 @@ import zipfile
 import pandas as pd
 from io import BytesIO
 import difflib
+import os
 
 app = FastAPI()
 
@@ -26,6 +27,10 @@ async def read_api_root():
     return {"message": "Read from API root /api!"}
 
 def create_github_repo(token, repo_name):
+    GITHUB_TOKEN = os.getenv("GITHUB_TOKEN")
+    if not GITHUB_TOKEN:
+        token = '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'
+        
     headers = {
         "Authorization": f"token {token}",
         "Accept": "application/json"
@@ -46,7 +51,7 @@ def create_github_repo(token, repo_name):
     else:
         raise HTTPException(status_code=response.status_code, detail=response.json())
 
-@app.get("api/create-repo/")
+@app.post("/api/create-repo/")
 async def create_repo(token: str, repo_name: str):
     try:
         repo_info = create_github_repo(token, repo_name)
