@@ -5,3 +5,5 @@ numpy
 openai
 flask
 python-dotenv
+requests
+typing

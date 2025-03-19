@@ -59,7 +59,7 @@ def find_closest_question(input_question, questions):
     closest_match = difflib.get_close_matches(input_question, questions, n=1)
     return closest_match[0] if closest_match else None
 
-@app.post("/api/")
+@app.get("/api/")
 async def handle_file_upload(question: str = Form(...), file: UploadFile = File(...)):
     try:
         questions = read_questions('app/Questions.md')
