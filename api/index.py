@@ -27,12 +27,11 @@ async def read_api_root():
     return {"message": "Read from API root /api!"}
 
 def create_github_repo(token, repo_name):
-    GITHUB_TOKEN = os.getenv("GITHUB_TOKEN")
-    if not GITHUB_TOKEN:
-        token = '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'
+    if not token:
+        token_to_use = os.getenv("GITHUB_TOKEN")
         
     headers = {
-        "Authorization": f"token {token}",
+        "Authorization": f"token {token_to_use}",
         "Accept": "application/json"
     }
 
