@@ -1,9 +1,2 @@
 fastapi
 uvicorn
-pandas
-numpy
-openai
-flask
-python-dotenv
-requests
-typing
