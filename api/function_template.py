@@ -5,21 +5,38 @@ import subprocess
 
 # Q1
 def q1_code_vsc():
-    return "Success Raji Project 2 you got 100"
-    
+    return check_prettier()
+    # return "Success Raji Project 2 you got 100"
     
     
 def check_prettier():
-    """Check if Prettier is installed and accessible."""
+    
+    current_dir = os.path.dirname(os.path.abspath(__file__))
+    folder_path = os.path.join(current_dir, 'README.md')
+
+    # Check if the folder exists
+    if os.path.isdir(folder_path):
+        return f"The folder '{folder_path}' exists."
+    else:
+        return f"The folder '{folder_path}' does not exist."
+    return f'Working Directory: {current_dir} File Path: {file_path}'
 
     try:
-        # Run Prettier using the globally installed `npx`
-        result = subprocess.run(
-            ["npx", "prettier", "--version"],  # Use global npx
-            stdout=subprocess.PIPE,
-            stderr=subprocess.PIPE,
-            text=True,
-            shell=True)
+        # prettier_bin = "/vercel/path0/api/node_modules/.bin/prettier"
+        if not (os.path.exists(prettier_bin)):
+            result = subprocess.run(
+                ["npx", "prettier", "--version"],
+                stdout=subprocess.PIPE,
+                stderr=subprocess.PIPE,
+                text=True,
+                shell=True)
+        else:   
+            result = subprocess.run(
+                [prettier_bin, "--version"], 
+                stdout=subprocess.PIPE,
+                stderr=subprocess.PIPE,
+                text=True,
+                shell=True)   
 
         if result.returncode == 0:
             print(f"Prettier Found: {result.stdout.strip()}")
