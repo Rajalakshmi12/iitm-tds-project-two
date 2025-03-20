@@ -6,14 +6,12 @@ import zipfile
 import pandas as pd
 from io import BytesIO
 import os
-import importlib
 
 # Function Template import
-from api.function_template import q3_readme_shasum, q1_code_vsc
+from api.function_template import q3_readme_shasum
 
 # Project 2 starts here
 app = FastAPI()
-function_module = importlib.import_module("api.function_template")
 
 app.add_middleware(
     CORSMiddleware,
@@ -25,14 +23,11 @@ app.add_middleware(
 
 @app.get("/")
 async def read_root():
-    #Import the `function_template` module at the top (globally)
-    available_functions = {name: getattr(function_module, name) for name in dir(function_module) if callable(getattr(function_module, name))}
-    return f"Loaded Functions: {list(available_functions.keys())}"
+    return {"message": "Welcome to my FastAPI application!"}
 
 @app.get("/api/")
 async def read_api_root():
-    return {"message": "Welcome to my FastAPI application!"}
-
+    return {"message": "Read from API root /api!"}
 
 def load_questions(csv_path: str):
     """Load questions from CSV and return as a DataFrame."""
@@ -71,17 +66,6 @@ async def ask_question(question: str = Query(..., title="User Question")):
         if not function_name:
             raise HTTPException(status_code=404, detail="No matching question found")
         
-        # ✅ Import the `function_template.py` module dynamically
-        module_path = "api.function_template"
-
-        # ✅ Check if function exists and call it dynamically
-        if hasattr(function_module, function_name):
-            function_to_call = getattr(function_module, function_name)
-            function_output = function_to_call()  # Call the function
-        else:
-            raise HTTPException(status_code=404, detail=f"Function {function_name} not found in {module_path}")
-
-        return {"function_name": function_name, "output": function_output}
-
+        return {"function_name": function_name}
     except Exception as e:
         raise HTTPException(status_code=400, detail=str(e))

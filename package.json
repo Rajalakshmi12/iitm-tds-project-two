@@ -16,5 +16,8 @@
     "url": "https://github.com/Rajalakshmi12/iitm-tds-project-two/issues"
   },
   "homepage": "https://github.com/Rajalakshmi12/iitm-tds-project-two#readme",
-  "description": ""
+  "description": "",
+  "dependencies": {
+    "prettier": "^3.5.3"
+  }
 }
