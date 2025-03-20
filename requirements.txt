@@ -3,8 +3,4 @@ uvicorn
 requests
 pandas
 zipfile36
-subprocess
-os
-sys
-hashlib
 importlib
