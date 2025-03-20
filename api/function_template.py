@@ -3,6 +3,9 @@ import os
 import hashlib
 import subprocess
 
+
+
+
 # Q1
 def q1_code_vsc():
     return check_prettier()
@@ -12,14 +15,15 @@ def q1_code_vsc():
 def check_prettier():
     
     current_dir = os.path.dirname(os.path.abspath(__file__))
-    folder_path = os.path.join(current_dir, 'README.md')
+    new_dir = os.path.join(current_dir, "node_modules/.bin/prettier")
+    
+    return os.path.exists(new_dir)
+
 
     # Check if the folder exists
     if os.path.isdir(folder_path):
         return f"The folder '{folder_path}' exists."
-    else:
-        return f"The folder '{folder_path}' does not exist."
-    return f'Working Directory: {current_dir} File Path: {file_path}'
+
 
     try:
         # prettier_bin = "/vercel/path0/api/node_modules/.bin/prettier"
