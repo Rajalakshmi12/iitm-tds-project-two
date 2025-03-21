@@ -1,0 +1,23 @@
+{
+  "name": "iitm-tds-project-two",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Rajalakshmi12/iitm-tds-project-two.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Rajalakshmi12/iitm-tds-project-two/issues"
+  },
+  "homepage": "https://github.com/Rajalakshmi12/iitm-tds-project-two#readme",
+  "description": "",
+  "dependencies": {
+    "prettier": "^3.5.3"
+  }
+}
