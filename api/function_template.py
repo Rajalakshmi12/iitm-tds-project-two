@@ -88,7 +88,14 @@ def calculate_sha256(content):
         return str(e)
 
 def q3_readme_shasum():
-    file_path = 'api/README.md'
+        
+    
+    current_dir = os.path.dirname(os.path.abspath(__file__))
+    file_path_1 = os.path.join(current_dir, 'api')
+    file_path_2 = os.path.join(file_path_1, 'README.md')
+    
+    return os.path.exists(file_path_2)
+    #file_path = 'README.md'
     
     if not os.path.exists(file_path):
         return "Error: File not found"
