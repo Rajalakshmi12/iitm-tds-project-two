@@ -77,7 +77,11 @@ async def ask_question(question: str = Query(..., title="User Question")):
         # ✅ Check if function exists and call it dynamically
         if hasattr(function_module, function_name):
             function_to_call = getattr(function_module, function_name)
-            function_output = function_to_call()  # Call the function
+        try:
+            function_output = function_to_call(question)
+        except TypeError:
+            function_output = function_to_call() 
+        
         else:
             raise HTTPException(status_code=404, detail=f"Function {function_name} not found in {module_path}")
 

@@ -4,3 +4,5 @@ requests
 pandas
 zipfile36
 importlib
+re
+pandas
