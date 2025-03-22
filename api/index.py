@@ -29,7 +29,7 @@ async def read_root():
     available_functions = {name: getattr(function_module, name) for name in dir(function_module) if callable(getattr(function_module, name))}
     return f"Loaded Functions: {list(available_functions.keys())}"
 
-@app.get("/api/")
+@app.post("/api/")
 async def read_api_root():
     return {"message": "Welcome to my FastAPI application!"}
 
