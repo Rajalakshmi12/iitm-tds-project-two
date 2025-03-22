@@ -9,7 +9,7 @@ import os
 import importlib
 
 # Function Template import
-from api.function_template import q3_readme_shasum, q1_code_vsc
+from api.function_template import q38_ducks_count, q0_nomatch
 
 # Project 2 starts here
 app = FastAPI()
@@ -65,27 +65,30 @@ def find_closest_question(input_question: str, df: pd.DataFrame):
 async def ask_question(question: str = Query(..., title="User Question")):
     """Finds the closest question from CSV based on keyword matches and returns the corresponding function name."""
     try:
+        module_path = "api.function_template"
+        
         df = load_questions("api/question_template.csv")  # Ensure the correct CSV path
         function_name = find_closest_question(question, df)
         
         if not function_name:
-            raise HTTPException(status_code=404, detail="No matching question found")
-        
-        # ✅ Import the `function_template.py` module dynamically
-        module_path = "api.function_template"
-
-        # ✅ Check if function exists and call it dynamically
-        if hasattr(function_module, function_name):
-            function_to_call = getattr(function_module, function_name)
-        try:
-            function_output = function_to_call(question)
-        except TypeError:
-            function_output = function_to_call() 
-        
+            return "No closest match found, try another question."
         else:
-            raise HTTPException(status_code=404, detail=f"Function {function_name} not found in {module_path}")
+            # ✅ Check if function exists and call it dynamically
+            if hasattr(function_module, function_name):
+                function_to_call = getattr(function_module, function_name)
+            
+                try:
+                    if function_to_call:
+                        function_output = function_to_call(question=question)
+                        return {"function_name": function_name, "output": function_output}
+                    else:
+                        raise HTTPException(status_code=404, detail=f"Function {function_name} {function_to_call} not found in {module_path}")
 
-        return {"function_name": function_name, "output": function_output}
+                except TypeError:
+                        return q0_nomatch()
 
+
+
+                
     except Exception as e:
         raise HTTPException(status_code=400, detail=str(e))

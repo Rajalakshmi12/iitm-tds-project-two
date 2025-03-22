@@ -1,83 +1,73 @@
-﻿q_no,question,function_name,keywords,When,properties,file,GA1,Answer
+﻿q_no,question,function_name,keywords,When,properties,file,GA1,Answer,Post call
 1,"Inst+B2:C11all and run Visual Studio Code. In your Terminal (or Command Prompt), type code -s and press Enter. Copy and paste the entire output below.
 
-What is the output of code -s?",q1_code_vsc,"visual, command, prompt, output",,,,GA1,
+What is the output of code -s?",q1_code_vsc,"visual, command, prompt, output",,,,GA1,,
 2,"Running uv run --with httpie -- https [URL] installs the Python package httpie and sends a HTTPS request to the URL.
 
 Send a HTTPS request to https://httpbin.org/get with the URL encoded parameter email set to 23ds3000149@ds.study.iitm.ac.in
 
-What is the JSON output of the command? (Paste only the JSON body, not the headers)",q2_httpie_json,"running, uv, run, --with, httpie",,,,GA1,
+What is the JSON output of the command? (Paste only the JSON body, not the headers)",q2_httpie_json,"running, uv, run, --with, httpie",,,,GA1,,
 3,"Download readme.md and In the directory where you downloaded it, make sure it is called README.md, and run npx -y prettier@3.4.2 README.md | sha256sum.
 
-What is the output of the command?",q3_readme_shasum,"readme, prettier, sha256sum, command",,,solution_q3.py,GA1,
+What is the output of the command?",q3_readme_shasum,"readme, prettier, sha256sum, command",,,solution_q3.py,GA1,,
 4,"Let's make sure you can write formulas in Google Sheets. Type this formula into Google Sheets. (It won't work in Excel)
 
 =SUM(ARRAY_CONSTRAIN(SEQUENCE(100, 100, 8, 13), 1, 10))
-What is the result?",q4_array_constraint,"formula, google, sheet, array, constrin, array_constrain",,,,GA1,
+What is the result?",q4_array_constraint,"formula, google, sheet, array, constrin, array_constrain",,,,GA1,,
 5,"Let's make sure you can write formulas in Excel. Type this formula into Excel.
 
 Note: This will ONLY work in Office 365.
 
 =SUM(TAKE(SORTBY({1,1,0,4,7,5,2,2,15,5,1,1,7,10,5,0}, {10,9,13,2,11,8,16,14,7,15,5,4,6,1,3,12}), 1, 1))
-What is the result?",q5_excel_sort,"excel, sort, formulas, formula, office",,,,GA1,
+What is the result?",q5_excel_sort,"excel, sort, formulas, formula, office",,,,GA1,,
 6,"Just above this paragraph, there's a hidden input with a secret value.
 
-What is the value in the hidden input?",q6_hidden_secret,"hidden, secret, paragraph, input, value",,Link: https://exam.sanand.workers.dev/tds-2025-01-ga1,,GA1,
+What is the value in the hidden input?",q6_hidden_secret,"hidden, secret, paragraph, input, value",,Link: https://exam.sanand.workers.dev/tds-2025-01-ga1,,GA1,,
 7,"How many Wednesdays are there in the date range 1980-04-16 to 2009-02-11?
-The dates are in the year-month-day format. Include both the start and end date in your count. You can do this using any tool (e.g. Excel, Python, JavaScript, manually).",q7_day_dates,"Mondays, Tuesdays, Wednesdays, Thursdays, Fridays, Saturdays, Sundays, format, start, end, date, count",Soon,,,GA1,
+The dates are in the year-month-day format. Include both the start and end date in your count. You can do this using any tool (e.g. Excel, Python, JavaScript, manually).",q7_day_dates,"Mondays, Tuesdays, Wednesdays, Thursdays, Fridays, Saturdays, Sundays, format, start, end, date, count",Soon,,,GA1,,
 8,"Download and unzip file which has a single extract.csv file inside.
 
-What is the value in the ""answer"" column of the CSV file?",q8_extract_csv,"unzip, extract, download, answer, value, answer, column",,,,GA1,
+What is the value in the ""answer"" column of the CSV file?",q8_extract_csv,"unzip, extract, download, answer, value, answer, column",,,,GA1,,
 9,"Let's make sure you know how to use JSON. Sort this JSON array of objects by the value of the age field. In case of a tie, sort by the name field. Paste the resulting JSON below without any spaces or newlines.
 
-[{""name"":""Alice"",""age"":48},{""name"":""Bob"",""age"":69},{""name"":""Charlie"",""age"":27},{""name"":""David"",""age"":26},{""name"":""Emma"",""age"":68},{""name"":""Frank"",""age"":90},{""name"":""Grace"",""age"":78},{""name"":""Henry"",""age"":27},{""name"":""Ivy"",""age"":85},{""name"":""Jack"",""age"":74},{""name"":""Karen"",""age"":43},{""name"":""Liam"",""age"":52},{""name"":""Mary"",""age"":19},{""name"":""Nora"",""age"":36},{""name"":""Oscar"",""age"":5},{""name"":""Paul"",""age"":11}]",q9_json_sort,"json, sort, spaces, newlines, field",Soon,Json file,,GA1,
+[{""name"":""Alice"",""age"":48},{""name"":""Bob"",""age"":69},{""name"":""Charlie"",""age"":27},{""name"":""David"",""age"":26},{""name"":""Emma"",""age"":68},{""name"":""Frank"",""age"":90},{""name"":""Grace"",""age"":78},{""name"":""Henry"",""age"":27},{""name"":""Ivy"",""age"":85},{""name"":""Jack"",""age"":74},{""name"":""Karen"",""age"":43},{""name"":""Liam"",""age"":52},{""name"":""Mary"",""age"":19},{""name"":""Nora"",""age"":36},{""name"":""Oscar"",""age"":5},{""name"":""Paul"",""age"":11}]",q9_json_sort,"json, sort, spaces, newlines, field",Soon,Json file,,GA1,,
 10,"Download  file and use multi-cursors and convert it into a single JSON object, where key=value pairs are converted into {key: value, key: value, ...}.
 
-What's the result when you paste the JSON at tools-in-data-science.pages.dev/jsonhash and click the Hash button?",q10_multi_cursors,"multi-cursors, multi, cursors, single, json, hash, button",Soon,,,GA1,
-11,,,,,,,GA1,
-12,,,,,,,GA1,
-13,,,,,,,GA1,
-14,,,,,,,GA1,
-15,,,,,,,GA1,
-16,,,,,,,GA1,
-17,,,,,,,GA1,
-18,,,,,,,GA1,
-19,,,,,,,,
-20,,,,,,,,
-21,,,,,,,,
-22,,,,,,,,
-23,,,,,,,,
-24,,,,,,,,
-25,,,,,,,,
-26,,,,,,,,
-27,,,,,,,,
-28,,,,,,,,
-29,,,,,,,,
-30,,,,,,,,
-31,,,,,,,,
-32,,,,,,,,
-33,,,,,,,,
-34,,,,,,,,
-35,,,,,,,,
-36,,,,,,,,
-37,,,,,,,,
-38,,,,,,,,
-39,,,,,,,,
-40,,,,,,,,
-41,,,,,,,,
-42,,,,,,,,
-43,,,,,,,,
-44,,,,,,,,
-45,,,,,,,,
-46,,,,,,,,
-47,,,,,,,,
-48,What is the total number of ducks across players on page number 17 of ESPN Cricinfo's ODI batting stats?,q48_ducks_count,"number, ducks, players, page, espn, odi, batting, stats",,,,GA5,140
-49,"Extract Data: Retrieve movie information from IMDb for all films that have a rating between 2 and 7.
+What's the result when you paste the JSON at tools-in-data-science.pages.dev/jsonhash and click the Hash button?",q10_multi_cursors,"multi-cursors, multi, cursors, single, json, hash, button",Soon,,,GA1,,
+11,,,,,,,GA1,,
+12,,,,,,,GA1,,
+13,,,,,,,GA1,,
+14,,,,,,,GA1,,
+15,,,,,,,GA1,,
+16,,,,,,,GA1,,
+17,,,,,,,GA1,,
+18,,,,,,,GA1,,
+19,,,,,,,,,
+20,,,,,,,,,
+21,,,,,,,,,
+22,,,,,,,,,
+23,,,,,,,,,
+24,,,,,,,,,
+25,,,,,,,,,
+26,,,,,,,,,
+27,,,,,,,,,
+28,,,,,,,,,
+29,,,,,,,,,
+30,,,,,,,,,
+31,,,,,,,,,
+32,,,,,,,,,
+33,,,,,,,,,
+34,,,,,,,,,
+35,,,,,,,,,
+36,,,,,,,,,
+37,,,,,,,,,
+38,What is the total number of ducks across players on page number 17 of ESPN Cricinfo's ODI batting stats?,q38_ducks_count,"number, ducks, players, page, espn, odi, batting, stats",,,,GA4,140,127.0.0.1:8000/api/ask_question/?question=What is the total number of ducks across players on page number 17 of ESPN Cricinfo%27s ODI batting stats?
+39,"Extract Data: Retrieve movie information from IMDb for all films that have a rating between 2 and 7.
 Format Data: Structure the extracted information into a JSON format containing the following fields:
 id: The unique identifier for the movie on IMDb.
 title: The official title of the movie.
 year: The year the movie was released.
-rating: The IMDb user rating for the movie.",q49_imdb_rating,"retrieve, movie, rating, title, year, imdb, json",,"min, max",,GA5,"[
+rating: The IMDb user rating for the movie.",q39_imdb_rating,"retrieve, movie, rating, title, year, imdb, json",,"min, max values",,GA4,"[
   {""id"": ""tt20221436"",""title"": ""1. Emilia Pérez"",""year"": ""2024"",""rating"": ""5.6""},
   {""id"": ""tt27657135"",""title"": ""2. Saturday Night"",""year"": ""2024"",""rating"": ""7.0""},
   {""id"": ""tt21227864"",""title"": ""3. You're Cordially Invited"",""year"": ""2025"",""rating"": ""5.5""},
@@ -103,12 +93,37 @@ rating: The IMDb user rating for the movie.",q49_imdb_rating,"retrieve, movie, r
   {""id"": ""tt4216984"",""title"": ""23. Wolf Man"",""year"": ""2025"",""rating"": ""5.7""},
   {""id"": ""tt10655524"",""title"": ""24. It Ends with Us"",""year"": ""2024"",""rating"": ""6.4""},
   {""id"": ""tt12810074"",""title"": ""25. Nightbitch"",""year"": ""2024"",""rating"": ""5.6""}
-]"
-50,,,,,,,GA5,http://127.0.0.1:8000/execute?country=Switzerland
-51,What is the JSON weather forecast description for Vancouver?,q51_weather,,,,,GA5,
-52,What is the minimum latitude of the bounding box of the city Chennai in the country India on the Nominatim API? Value of the minimum latitude,q52_nominatim_box,"minimum, latitude, bounding, box, Chennai, country, India, nominatim, api, value, minimum, latitude",,,,GA5,
-53,,,,,,,GA5,
-54,,,,,,,GA5,
-55,,,,,,,GA5,
-56,,,,,,,GA5,
-57,,,,,,,GA5,
+]",
+40,"Write a web application that exposes an API with a single query parameter: ?country=. It should fetch the Wikipedia page of the country, extracts all headings (H1 to H6), and create a Markdown outline for the country. The outline should look like this:",q40_wikipedia,"web, application, api, single, query,  parameter: ?country=. It should fetch the Wikipedia page of the country, extracts all headings (H1 to H6), and create a Markdown outline for the country. The outline should look like this:",,,,GA4,http://127.0.0.1:8000/execute?country=Switzerland,
+41,What is the JSON weather forecast description for Vancouver?,q41_weather,"json, weather, forecast, description, Vancouver",,City?,,GA4,"{
+    ""2025-02-09"": ""Sunny intervals and light winds"",
+    ""2025-02-10"": ""Sunny and light winds"",
+    ""2025-02-11"": ""Sunny and light winds"",
+    ""2025-02-12"": ""Sunny and light winds"",
+    ""2025-02-13"": ""Sunny and light winds"",
+    ""2025-02-14"": ""Sunny and light winds"",
+    ""2025-02-15"": ""Light snow and a gentle breeze"",
+    ""2025-02-16"": ""Sleet and a gentle breeze"",
+    ""2025-02-17"": ""Light rain and light winds"",
+    ""2025-02-18"": ""Light rain and light winds"",
+    ""2025-02-19"": ""Heavy rain and a gentle breeze"",
+    ""2025-02-20"": ""Light cloud and light winds"",
+    ""2025-02-21"": ""Light rain and light winds"",
+    ""2025-02-22"": ""Light rain and light winds""
+}",
+42,What is the minimum latitude of the bounding box of the city Chennai in the country India on the Nominatim API? Value of the minimum latitude,q42_nominatim_box,"minimum, latitude, bounding, box, Chennai, country, India, nominatim, api, value, minimum, latitude",,minimum latitude?,,GA4,12.9236939,
+43,,,,,,,GA4,,
+44,,,,,,,GA4,,
+45,,,,,,,GA4,,
+46,,,,,,,GA4,,
+47,,,,,,,GA4,,
+48,,,,,,,,,
+49,,,,,,,,,
+50,,,,,,,,,
+51,,,,,,,,,
+52,,,,,,,,,
+53,,,,,,,,,
+54,,,,,,,,,
+55,,,,,,,,,
+56,,,,,,,,,
+57,,,,,,,,,

@@ -6,3 +6,4 @@ zipfile36
 importlib
 re
 pandas
+BeautifulSoup
