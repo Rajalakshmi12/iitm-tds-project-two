@@ -94,7 +94,7 @@ rating: The IMDb user rating for the movie.",q39_imdb_rating,"Retrieve, movie, r
   {""id"": ""tt10655524"",""title"": ""24. It Ends with Us"",""year"": ""2024"",""rating"": ""6.4""},
   {""id"": ""tt12810074"",""title"": ""25. Nightbitch"",""year"": ""2024"",""rating"": ""5.6""}
 ]",
-40,"Write a web application that exposes an API with a single query parameter: ?country=. It should fetch the Wikipedia page of the country, extracts all headings (H1 to H6), and create a Markdown outline for the country. The outline should look like this:",q40_wikipedia,"api, single, query, country, Wikipedia, extracts, headings, Markdown",,,,GA4,http://127.0.0.1:8000/execute?country=Switzerland,
+40,"Write a web application that exposes an API with a single query paramete country=India It should fetch the Wikipedia page of the country, extracts all headings (H1 to H6), and create a Markdown outline for the country. The outline should look like this:",q40_wikipedia,"api, single, query, country, Wikipedia, extracts, headings, Markdown",,,,GA4,http://127.0.0.1:8000/execute?country=Switzerland,
 41,What is the JSON weather forecast description for Vancouver?,q41_weather,"json, weather, forecast, description, Vancouver",,City?,,GA4,"{
     ""2025-02-09"": ""Sunny intervals and light winds"",
     ""2025-02-10"": ""Sunny and light winds"",
