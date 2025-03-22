@@ -5,5 +5,4 @@ pandas
 zipfile36
 importlib
 pandas
-BeautifulSoup
-json
+beautifulsoup4
