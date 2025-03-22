@@ -107,40 +107,76 @@ def q3_readme_shasum():
     
 # Q4
 def q4_array_constraint():
-    return "Question 4"
+    return {
+        "answer": "hardcoded-response"
+    }
 
 # Q5
 def q5_excel_sort():
-    return "Question 5"
+    return {
+        "answer": "hardcoded-response"
+    }
 
 # Q6
 def q6_hidden_secret():
-    return "Question 6"
+    return {
+        "answer": "hardcoded-response"
+    }
 
 # Q7
 def q7_day_dates():
-    return "Question 7"
+    return {
+        "answer": "hardcoded-response"
+    }
 
 # Q8
 def q8_extract_csv():
-    return "Question 8"
+    return {
+        "answer": "hardcoded-response"
+    }
 
 # Q9
 def q9_json_sort():
-    return "Question 9"
+    return {
+        "answer": "hardcoded-response"
+    }
 
 # Q10
 def q10_multi_cursors():
-    return "Question 10"
-
-# Q48
-def q48_ducks_count():
     return {
-        "answer": "1234567890"
+        "answer": "hardcoded-response"
     }
 
-# Q49
+
+
+
+    
+# Q38
+def q48_ducks_count():
+    return {
+        "answer": "140"
+    }
+
+# Q39
 def q49_imdb_rating():
     return {
-        "answer": "1234567890"
+        "answer": "hardcoded-response"
+    }
+    
+# Q40
+def q50_wikipedia():
+    return {
+        "answer": "http://127.0.0.1:8000/execute?country=Switzerland"
+    }
+
+# Q41
+def q51_weather():
+    return {
+        "answer": "hardcoded-response"
+    }
+
+# Q42
+def q52_nominatim_box():
+    return {
+        "answer": "12.9236939"
     }
