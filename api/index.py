@@ -9,7 +9,7 @@ import os
 import importlib
 
 # Function Template import
-from api.function_template import q38_ducks_count, q0_nomatch
+from api.function_template import *
 
 # Project 2 starts here
 app = FastAPI()
@@ -85,7 +85,10 @@ async def ask_question(question: str = Query(..., title="User Question")):
                         raise HTTPException(status_code=404, detail=f"Function {function_name} {function_to_call} not found in {module_path}")
 
                 except TypeError:
-                        return q0_nomatch()
+                        return function_to_call
+
+            else:
+                return q0_nomatch(question)
                 
     except Exception as e:
         raise HTTPException(status_code=400, detail=str(e))
