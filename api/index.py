@@ -86,9 +86,6 @@ async def ask_question(question: str = Query(..., title="User Question")):
 
                 except TypeError:
                         return q0_nomatch()
-
-
-
                 
     except Exception as e:
         raise HTTPException(status_code=400, detail=str(e))

@@ -4,6 +4,6 @@ requests
 pandas
 zipfile36
 importlib
-re
 pandas
 BeautifulSoup
+json

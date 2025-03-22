@@ -9,6 +9,7 @@ import re
 import requests
 import pandas as pd
 from bs4 import BeautifulSoup
+import json
 
 # Q0
 def q0_nomatch(question: str = None):
@@ -244,9 +245,88 @@ def q38_ducks_count(question: str = None):
 
 # Q39
 def q39_imdb_rating(question: str = None):
-    return {
-        "answer": "hardcoded-response"
-    }
+    ratings = re.findall(r'\b\d+\b' , question)
+    min_rating = int(ratings[0])
+    max_rating = int(ratings[1])
+    
+    url = f"https://www.imdb.com/search/title/?user_rating={min_rating},{max_rating}"
+    headers = {"User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/100.0.0.0 Safari/537.36"}
+    response = requests.get(url, headers=headers)
+
+    if response.status_code == 200:
+        final_summary = []
+
+        data = response.content
+        soup = BeautifulSoup(response.content, 'html.parser')
+
+        # Find all the div 'ipc-metadata-list-summary-item'
+            # Loop through to find div of [a] with class 'ipc-lockup-overlay ipc-focusable'
+            # Loop through to find h3 with 'ipc-title__text' --> TITLE
+            # Loop through to find span with class 'sc-d5ea4b9d-7 URyjV dli-title-metadata-item' --> YEAR
+            # Loop through to find span with class 'ipc-rating-star--rating' --> RATING
+            
+        movies = soup.find_all('div', attrs = {'class':'ipc-metadata-list-summary-item__c'})
+        
+        for movie in movies:
+            movie_summary = {}
+            # ID
+            id_href = movie.find('a', attrs={'class':'ipc-lockup-overlay ipc-focusable'}).get('href')
+            match = re.search(r"tt(\d+)", id_href)
+            movie_summary["id"] = 'tt'+match.group(1)
+            
+            # TITLE
+            title = movie.find('h3', attrs={'class': 'ipc-title__text'})
+            if title:
+                title_text = title.get_text(strip=True)
+                _, _, m_title = title_text.partition(" ")  # Splits at the first space, partition is useful
+                encoded_title = m_title.encode('utf-8').decode('utf-8')
+                movie_summary["title"] = encoded_title
+                print(title_text)
+            else:
+                movie_summary["title"] = "Title not found"
+                print("Title not found")
+
+            # YEAR
+            year = movie.find('span', attrs={'class': 'sc-d5ea4b9d-7 URyjV dli-title-metadata-item'})
+            if year:
+                year_text = year.get_text(strip=True)
+                movie_summary["year"] = year_text[:4]  # Get only first 4 digits for the year
+            else:
+                movie_summary["year"] = "Year not found"
+                print("Year not found")
+
+            # # TITLE
+            # title = movie.find('h3', attrs={'class': 'ipc-title__text'}).get_text(strip=True)
+            # _, _, m_title = title.partition(" ")  # Splits at the first space, partition is useful
+            # encoded_title = title.encode('utf-8').decode('utf-8')
+            # movie_summary["title"] = encoded_title
+            # print(title)
+
+            # # YEAR
+            # year = movie.find('span', attrs={'class': 'sc-d5ea4b9d-7 URyjV dli-title-metadata-item'}).get_text(strip=True)
+            # movie_summary["year"] = year # Get only first 4 digits
+            
+            
+            # RATING
+            rating = movie.find('span', attrs = {'class':'ipc-rating-star--rating'}).get_text(strip=True)
+            movie_summary["rating"] = rating
+
+            # Final array that stores all the objects  
+            final_summary.append(movie_summary)
+        print(json.dumps(final_summary, indent=2, ensure_ascii=False)) # Important to get rid of decoded characters
+
+            #print(f"Title: {title}, Rating: {rating}, Link: {link}")
+        
+        answer = """[
+            #{ "id": "tt1234567", "title": "Movie 1", "year": "2021", "rating": "5.8" },
+            #{ "id": "tt7654321", "title": "Movie 2", "year": "2019", "rating": "6.2" }
+        ]"""
+        
+        return answer
+        
+        return {
+            "answer": "hardcoded-response"
+        }
     
 # Q40
 def q40_wikipedia(question: str = None):
