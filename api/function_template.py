@@ -20,9 +20,10 @@ def q0_nomatch(question: str = None):
     
 #Q40
 def q40_wikipedia(question: str = None):
-    match = re.search(r'country=([a-zA-Z\s]+)', question)
+    match = re.search(r'country=([a-zA-Z\s]+)\b', question)
     if match:
         country = match.group(1).strip()
+        return country
     else:
         country = ''
     
