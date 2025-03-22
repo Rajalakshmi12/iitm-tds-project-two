@@ -20,10 +20,9 @@ def q0_nomatch(question: str = None):
     
 #Q40
 def q40_wikipedia(question: str = None):
-    match = re.search(r'country=([a-zA-Z\s]+)\b', question)
+    match = re.search(r'country=([a-zA-Z\s]+?)(?=\s|$)', question)
     if match:
         country = match.group(1).strip()
-        return country
     else:
         country = ''
     
@@ -32,7 +31,6 @@ def q40_wikipedia(question: str = None):
             "answer": f"http://127.0.0.1:8000/execute?country={country}"
         }
     else:
-        return country
         wiki_url = f"https://en.wikipedia.org/wiki/{country}"
         print(wiki_url)  # Debugging: Print the URL to check if it's correct
         response = requests.get(wiki_url)

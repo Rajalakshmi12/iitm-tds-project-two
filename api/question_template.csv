@@ -67,7 +67,7 @@ Format Data: Structure the extracted information into a JSON format containing t
 id: The unique identifier for the movie on IMDb.
 title: The official title of the movie.
 year: The year the movie was released.
-rating: The IMDb user rating for the movie.",q39_imdb_rating,"Retrieve, movie, rating, title, year, imdb, json",,"min, max values",,GA4,"[
+rating: The IMDb user rating for the movie.",q39_imdb_rating,"Retrieve, movie, rating, title, year, imdb, json",Done,"min, max values",,GA4,"[
   {""id"": ""tt20221436"",""title"": ""1. Emilia Pérez"",""year"": ""2024"",""rating"": ""5.6""},
   {""id"": ""tt27657135"",""title"": ""2. Saturday Night"",""year"": ""2024"",""rating"": ""7.0""},
   {""id"": ""tt21227864"",""title"": ""3. You're Cordially Invited"",""year"": ""2025"",""rating"": ""5.5""},
@@ -94,7 +94,7 @@ rating: The IMDb user rating for the movie.",q39_imdb_rating,"Retrieve, movie, r
   {""id"": ""tt10655524"",""title"": ""24. It Ends with Us"",""year"": ""2024"",""rating"": ""6.4""},
   {""id"": ""tt12810074"",""title"": ""25. Nightbitch"",""year"": ""2024"",""rating"": ""5.6""}
 ]",
-40,"Write a web application that exposes an API with a single query paramete country=India It should fetch the Wikipedia page of the country, extracts all headings (H1 to H6), and create a Markdown outline for the country. The outline should look like this:",q40_wikipedia,"api, single, query, country, Wikipedia, extracts, headings, Markdown",,,,GA4,http://127.0.0.1:8000/execute?country=Switzerland,
+40,"Write a web application that exposes an API with a single query paramete country=India It should fetch the Wikipedia page of the country, extracts all headings (H1 to H6), and create a Markdown outline for the country. The outline should look like this:",q40_wikipedia,"api, single, query, country, Wikipedia, extracts, headings, Markdown",Done,country,,GA4,http://127.0.0.1:8000/execute?country=Switzerland,
 41,What is the JSON weather forecast description for Vancouver?,q41_weather,"json, weather, forecast, description, Vancouver",,City?,,GA4,"{
     ""2025-02-09"": ""Sunny intervals and light winds"",
     ""2025-02-10"": ""Sunny and light winds"",
