@@ -1,22 +1,7 @@
-import os
-import hashlib
-import subprocess
 import re
 import requests
-import pandas as pd
-from io import StringIO
-import requests
-from bs4 import BeautifulSoup
-import json
 
-# Q0
-def q0_nomatch(question: str = None):
-    return {
-        f"answer{question}": "1234567890"
-    }
-    
-# Q42
-def q42_nominatim_box(question: str = None):
+def extract_info_from_question(question: str):
     country_pattern = re.compile(r'country\s+([a-zA-Z\s]+)(?=\s+on)', re.IGNORECASE)
     city_pattern = re.compile(r'city\s+([a-zA-Z\s]+?)(?=\s+in)', re.IGNORECASE)
     direction_pattern = re.compile(r'(minimum|maximum)\s+(latitude|longitude)', re.IGNORECASE)
@@ -61,10 +46,10 @@ def q42_nominatim_box(question: str = None):
     
     if nominatim_response:
         if params['direction'] == 'minimum':
-            latitude = nominatim_response[0]['boundingbox'][0]
+            return nominatim_response[0]['boundingbox'][0]
         else:
-            latitude = nominatim_response[0]['boundingbox'][1]
-        
-    return {
-        "answer": latitude
-    }
+            return nominatim_response[0]['boundingbox'][1]
+
+question = "What is the minimum latitude of the bounding box of the city Chennai in the country India on the Nominatim API?"
+print(extract_info_from_question(question))
+
