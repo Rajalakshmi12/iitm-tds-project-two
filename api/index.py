@@ -27,12 +27,11 @@ app.add_middleware(
 async def read_root():
     #Import the `function_template` module at the top (globally)
     available_functions = {name: getattr(function_module, name) for name in dir(function_module) if callable(getattr(function_module, name))}
-    return f"Loaded Functions: {list(available_functions.keys())}"
+    return f"GET Loaded Functions: {list(available_functions.keys())}"
 
-@app.get("/api/")
+@app.get("/vercel/")
 async def read_api_root():
-    return {"message": "Welcome to my FastAPI application!"}
-
+    return {"message": "Welcome to Vercel POST!"}
 
 def load_questions(csv_path: str):
     """Load questions from CSV and return as a DataFrame."""
@@ -61,7 +60,7 @@ def find_closest_question(input_question: str, df: pd.DataFrame):
     
     return best_match
 
-@app.get("/api/ask_question/")
+@app.get("/api/")
 async def ask_question(question: str = Query(..., title="User Question")):
     """Finds the closest question from CSV based on keyword matches and returns the corresponding function name."""
     try:
