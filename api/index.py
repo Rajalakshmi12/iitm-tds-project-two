@@ -29,7 +29,7 @@ async def read_root():
     available_functions = {name: getattr(function_module, name) for name in dir(function_module) if callable(getattr(function_module, name))}
     return f"GET Loaded Functions: {list(available_functions.keys())}"
 
-@app.get("/vercel/")
+@app.post("/vercel/")
 async def read_api_root():
     return {"message": "Welcome to Vercel POST!"}
 
