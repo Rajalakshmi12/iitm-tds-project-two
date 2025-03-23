@@ -13,7 +13,7 @@ What is the output of the command?",q3_readme_shasum,"readme, prettier, sha256su
 4,"Let's make sure you can write formulas in Google Sheets. Type this formula into Google Sheets. (It won't work in Excel)
 
 =SUM(ARRAY_CONSTRAIN(SEQUENCE(100, 100, 8, 13), 1, 10))
-What is the result?",q4_array_constraint,"formula, google, sheet, array, constrin, array_constrain",,,,GA1,,
+What is the result?",q4_array_constraint,"formula, google, sheet, array, constrain, array_constrain",,,,GA1,,
 5,"Let's make sure you can write formulas in Excel. Type this formula into Excel.
 
 Note: This will ONLY work in Office 365.
@@ -69,14 +69,19 @@ title: The official title of the movie.
 year: The year the movie was released.
 rating: The IMDb user rating for the movie.",q39_imdb_rating,"Retrieve, movie, rating, title, year, imdb, json",Done,"min, max values",,GA4,,
 40,"Write a web application that exposes an API with a single query paramete country=India It should fetch the Wikipedia page of the country, extracts all headings (H1 to H6), and create a Markdown outline for the country. The outline should look like this:",q40_wikipedia,"api, single, query, country, Wikipedia, extracts, headings, Markdown",Done,country,,GA4,http://127.0.0.1:8000/execute?country=Switzerland,"http://127.0.0.1:8000/api/ask_question/?question=Write%20a%20web%20application%20that%20exposes%20an%20API%20with%20a%20single%20query%20paramete%20country=Switzerland%20It%20should%20fetch%20the%20Wikipedia%20page%20of%20the%20country,%20extracts%20all%20headings%20(H1%20to%20H6),%20and%20create%20a%20Markdown%20outline%20for%20the%20country.%20The%20outline%20should%20look%20like%20this:%20api%20endpoint%20url%20What%20is%20the%20URL%20of%20your%20API%20endp"
-41,What is the JSON weather forecast description for Vancouver?,q41_weather,"json, weather, forecast, description, Vancouver",,City?,,GA4,,
+41,What is the JSON weather forecast description for Vancouver?,q41_weather,"json, weather, forecast, description, Vancouver",,City?,,GA4,https://colab.research.google.com/drive/1HRSlEpuQR5upx2QAMrK1u6glEQV3AQ2_,
 42,What is the minimum latitude of the bounding box of the city Chennai in the country India on the Nominatim API,q42_nominatim_box,"latitude, bounding, box, country, nominatim, latitude",Done,minimum latitude?,,GA4,12.9236939,
-43,,,,,,,GA4,,
+43,What is the link to the latest Hacker News post mentioning Hacker Culture having at least 70 points?,q43_hacker_points,"hacker, points, news, post",Soon,points = 70,,GA4,,
 44,"Using the GitHub API, find all users located in the city Mumbai with over 120 followers.
-When was the newest user's GitHub profile created?",q44_github_user,"github, city, followers, follower, newest, profile",,"number, city",,GA4,,
-45,,,,,,,GA4,,
-46,,,,,,,GA4,,
-47,,,,,,,GA4,,
+When was the newest user's GitHub profile created?",q44_github_user,"github, city, followers, follower, newest, profile",Soon,"number, city",,GA4,2024-03-29T06:23:16Z,
+45,"Create a scheduled GitHub action that runs daily and adds a commit to your repository. The workflow should:
+
+Use schedule with cron syntax to run once per day (must use specific hours/minutes, not wildcards)
+Include a step with your email 23ds3000149@ds.study.iitm.ac.in in its name
+Create a commit in each run
+Be located in .github/workflows/ directory",q45_github_action,,Later,,PDF file,GA4,https://github.com/Rajalakshmi12/IITM-Week-4-Action-Schedule,
+46,What is the total English marks of students who scored 59 or more marks in Biology in groups 63-93 (including both groups)?,q46_tabula_marks,"marks, students, groups, total",,which Subject? Groups number,,GA4,21898,
+47,"What is the markdown content of the PDF, formatted with prettier@3.4.2?",q47_pdf_markdown,"markdown, content, pdf, prettier",,,,GA4,,
 48,,,,,,,,,
 49,,,,,,,,,
 50,,,,,,,,,

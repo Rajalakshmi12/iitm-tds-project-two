@@ -79,7 +79,6 @@ async def ask_question(question: str = Query(..., title="User Question")):
                 try:
                     if function_to_call:
                         function_output = function_to_call(question=question)
-                        #return {"function_name": function_name, "output": function_output}
                         return {"function_name": function_name, "output": function_output}
                     else:
                         raise HTTPException(status_code=404, detail=f"Function {function_name} {function_to_call} not found in {module_path}")

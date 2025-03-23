@@ -52,6 +52,9 @@ def fetch_users_from_github(city: str, followers: int):
 
     if newest_user:
         print(f"The newest user in Mumbai with over 120 followers is {newest_user}, created on {newest_creation_date}.")
+        return {
+            "answer": newest_creation_date
+        }
     else:
         print("No users found with over 120 followers in Mumbai.")
 
