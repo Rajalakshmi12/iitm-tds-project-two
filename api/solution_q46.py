@@ -8,23 +8,23 @@ from tabula import convert_into
 import pdfplumber
 import re
 
-def q46_tabula_marks(text):
+def q46_tabula_marks(question):
     # Define dynamic regular expressions for extracting values
     subject_pattern = r"total\s+([A-Za-z]+)\s+marks"  # Capture subject (e.g., English)
     score_pattern = r"(\d+)\s*or\s+more\s+marks\s+in\s+([A-Za-z\s]+)\s+in\s+groups"  # Capture minimum score and the subject
     groups_pattern = r"groups\s+(\d+)-(\d+)"  # Capture group range
     
     # Extract the subject (e.g., English)
-    subject_match = re.search(subject_pattern, text)
+    subject_match = re.search(subject_pattern, question)
     subject = subject_match.group(1) if subject_match else None
     
     # Extract the score (e.g., 59 or more) and the subject (e.g., Biology)
-    score_match = re.search(score_pattern, text)
+    score_match = re.search(score_pattern, question)
     min_score = int(score_match.group(1)) if score_match else None
     score_subject = score_match.group(2) if score_match else None
     
     # Extract group range (e.g., 63-93)
-    group_match = re.search(groups_pattern, text)
+    group_match = re.search(groups_pattern, question)
     group_start = int(group_match.group(1)) if group_match else None
     group_end = int(group_match.group(2)) if group_match else None
 

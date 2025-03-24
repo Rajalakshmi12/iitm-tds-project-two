@@ -1,27 +1,4 @@
-import os
 import re
-import json
-import hashlib
-import subprocess
-import requests
-import pandas as pd
-import feedparser
-import pdfplumber
-import tabula
-from io import StringIO
-from bs4 import BeautifulSoup
-from tabula import convert_into
-from urllib.parse import urljoin
-import numpy as np
-from datetime import datetime, timedelta
-
-
-# Q0
-def q0_nomatch(question: str = None):
-    return {
-        f"answer{question}": "1234567890"
-    }
-
 
 # Q5
 def q5_excel_sort(question: str = None):
@@ -56,17 +33,11 @@ def q5_excel_sort(question: str = None):
         return {
                 "answer": 10
         }
-        
-        
     
-# Q6
-def q6_hidden_secret(question: str = None):
-    return {
-        "answer": "aofy98grpi"
-    }
-    
-# Q7
-def q7_day_dates(question: str = None):
-    return {
-        "answer": "hardcoded-response"
-    }
+question = (
+    "Let's make sure you can write formulas in Excel. "
+    "Type this formula into Excel. Note: This will ONLY work in Office 365. "
+    "=SUM(TAKE(SORTBY({1,1,0,4,7,5,2,2,15,5,1,1,7,10,5,0}, {10,9,13,2,11,8,16,14,7,15,5,4,6,1,6,12}), 1, 1)) "
+    "What is the result?"
+)
+print (q5_excel_sort(question))

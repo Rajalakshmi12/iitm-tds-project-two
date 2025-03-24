@@ -42,16 +42,88 @@ What's the result when you paste the JSON at tools-in-data-science.pages.dev/jso
 16,,,,,,,GA1,,
 17,,,,,,,GA1,,
 18,,,,,,,GA1,,
-19,,,,,,,,,
-20,,,,,,,,,
-21,,,,,,,,,
-22,,,,,,,,,
-23,,,,,,,,,
-24,,,,,,,,,
-25,,,,,,,,,
-26,,,,,,,,,
-27,,,,,,,,,
-28,,,,,,,,,
+19,Markdown Generation,,,,,,GA2,"# Introduction
+It's my journey on my everyday walking habit
+
+## Methodology
+Simple habitual changes that got me into regular walking habit
+
+**important**
+To understand your own interests
+
+*note* I am keeping this simple
+
+You can use the `len()` function to get the length of any dict type of variable in python
+
+```python
+# This is Python code
+def not_hello_world():
+    print(""Time to read a new book!"")
+```
+### I do not miss to carry a 
+- Backbag
+
+#### How I created this habit to go on a walk everyday morning without a miss?
+1. Coffee
+2. Book to read at least 2 pages per day
+3. A small talk with my Cafe staffs
+
+| Genre         | Title of the Book |
+|-----------------|--------------------------------|
+| Philosophy | Everything is f*cked       |
+
+[To Buy](https://www.amazon.co.uk/EVERY-THING-CKED-BOOK-ABOUT/dp/0062888439)
+
+![Cover Page](https://dailystoic.com/wp-content/uploads/2019/12/image1-768x960.png)
+
+> At the end, everything is meaningless !",
+20,"Download the image below and compress it losslessly to an image that is less than 1,500 bytes.
+By losslessly, we mean that every pixel in the new image should be identical to the original image.
+
+Upload your losslessly compressed image (less than 1,500 bytes)",,,,,,GA2,,
+21,"Publish a page using GitHub Pages that showcases your work. Ensure that your email address 23ds3000149@ds.study.iitm.ac.in is in the page's HTML.
+
+GitHub pages are served via CloudFlare which obfuscates emails. So, wrap your email address inside a:
+
+<!--email_off-->23ds3000149@ds.study.iitm.ac.in<!--/email_off-->
+What is the GitHub Pages URL? It might look like: https://[USER].github.io/[REPO]/",,,,,,GA2,https://rajalakshmi12.github.io/Git-TDS-Sem4,
+22,"Let's make sure you can access Google Colab. Run this program on Google Colab, allowing all required access to your email ID: 23ds3000149@ds.study.iitm.ac.in.
+
+Some code given
+
+What is the result? (It should be a 5-character string)",,,,,,GA2,702a6,
+23,,,,,,,GA2,,
+24,"Download this  which has the marks of 100 imaginary students.
+
+Create and deploy a Python app to Vercel. Expose an API so that when a request like https://your-app.vercel.app/api?name=X&name=Y is made, it returns a JSON response with the marks of the names X and Y in the same order, like this:
+
+{ ""marks"": [10, 20] }
+Make sure you enable CORS to allow GET requests from any origin.
+
+What is the Vercel URL? It should look like: https://your-app.vercel.app/api",,,,,,GA2,https://git-vercel-vert.vercel.app/api,
+25,"Create a GitHub action on one of your GitHub repositories. Make sure one of the steps in the action has a name that contains your email address 23ds3000149@ds.study.iitm.ac.in. For example:
+
+jobs:
+  test:
+    steps:
+      - name: 23ds3000149@ds.study.iitm.ac.in
+        run: echo ""Hello, world!""
+      
+Trigger the action and make sure it is the most recent action.
+What is your repository URL? It will look like: https://github.com/USER/REPO",,,,,,GA2,https://github.com/Rajalakshmi12/Git-TDS-Sem4,
+26,"Create and push an image to Docker Hub. Add a tag named 23ds3000149 to the image.
+
+What is the Docker image URL? It should look like: https://hub.docker.com/repository/docker/$USER/$REPO/general",,,,,,GA2,,
+27,"Download . This file has 2-columns:
+
+studentId: A unique identifier for each student, e.g. 1, 2, 3, ...
+class: The class (including section) of the student, e.g. 1A, 1B, ... 12A, 12B, ... 12Z
+Write a FastAPI server that serves this data. For example, /api should return all students data (in the same row and column order as the CSV file) as a JSON like this:",,,,,,GA2,What is the API URL endpoint for FastAPI? It might look like: http://127.0.0.1:8000/api,
+28,"Download Llamafile. Run the Llama-3.2-1B-Instruct.Q6_K.llamafile model with it.
+
+Create a tunnel to the Llamafile server using ngrok.
+
+What is the ngrok URL? It might look like: https://[random].ngrok-free.app/",,,,,,GA2,https://effb-2a06-5902-4603-2000-d869-eb01-3bb8-c106.ngrok-free.app,
 29,,,,,,,,,
 30,,,,,,,,,
 31,,,,,,,,,
@@ -71,7 +143,7 @@ rating: The IMDb user rating for the movie.",q39_imdb_rating,"Retrieve, movie, r
 40,"Write a web application that exposes an API with a single query paramete country=India It should fetch the Wikipedia page of the country, extracts all headings (H1 to H6), and create a Markdown outline for the country. The outline should look like this:",q40_wikipedia,"api, single, query, country, Wikipedia, extracts, headings, Markdown",Done,country,,GA4,http://127.0.0.1:8000/execute?country=Switzerland,"http://127.0.0.1:8000/api/ask_question/?question=Write%20a%20web%20application%20that%20exposes%20an%20API%20with%20a%20single%20query%20paramete%20country=Switzerland%20It%20should%20fetch%20the%20Wikipedia%20page%20of%20the%20country,%20extracts%20all%20headings%20(H1%20to%20H6),%20and%20create%20a%20Markdown%20outline%20for%20the%20country.%20The%20outline%20should%20look%20like%20this:%20api%20endpoint%20url%20What%20is%20the%20URL%20of%20your%20API%20endp"
 41,What is the JSON weather forecast description for Vancouver?,q41_weather,"json, weather, forecast, description, Vancouver",,City?,,GA4,https://colab.research.google.com/drive/1HRSlEpuQR5upx2QAMrK1u6glEQV3AQ2_,
 42,What is the minimum latitude of the bounding box of the city Chennai in the country India on the Nominatim API,q42_nominatim_box,"latitude, bounding, box, country, nominatim, latitude",Done,minimum latitude?,,GA4,12.9236939,
-43,What is the link to the latest Hacker News post mentioning Hacker Culture having at least 70 points?,q43_hacker_points,"hacker, points, news, post",Soon,points = 70,,GA4,,
+43,What is the link to the latest Hacker News post mentioning Hacker Culture having at least 70 points?,q43_hacker_points,"hacker, points, news, post",Done,points = 70,,GA4,,http://127.0.0.1:8000/api/?question=What%20is%20the%20link%20to%20the%20latest%20Hacker%20News%20post%20mentioning%20Hacker%20Culture%20having%20at%20least%2070%20points?
 44,"Using the GitHub API, find all users located in the city Mumbai with over 120 followers.
 When was the newest user's GitHub profile created?",q44_github_user,"github, city, followers, follower, newest, profile",Soon,"number, city",,GA4,2024-03-29T06:23:16Z,
 45,"Create a scheduled GitHub action that runs daily and adds a commit to your repository. The workflow should:
@@ -80,7 +152,7 @@ Use schedule with cron syntax to run once per day (must use specific hours/minut
 Include a step with your email 23ds3000149@ds.study.iitm.ac.in in its name
 Create a commit in each run
 Be located in .github/workflows/ directory",q45_github_action,,Later,,PDF file,GA4,https://github.com/Rajalakshmi12/IITM-Week-4-Action-Schedule,
-46,What is the total English marks of students who scored 59 or more marks in Biology in groups 63-93 (including both groups)?,q46_tabula_marks,"marks, students, groups, total",,which Subject? Groups number,,GA4,21898,
+46,What is the total English marks of students who scored 59 or more marks in Biology in groups 63-93 (including both groups)?,q46_tabula_marks,"marks, students, groups, total",,which Subject? Groups number,,GA4,21898,127.0.0.1:8000/api/?question=What is the total English marks of students who scored 59 or more marks in Biology in groups 63-93 (including both groups)?
 47,"What is the markdown content of the PDF, formatted with prettier@3.4.2?",q47_pdf_markdown,"markdown, content, pdf, prettier",,,,GA4,,
 48,,,,,,,,,
 49,,,,,,,,,
