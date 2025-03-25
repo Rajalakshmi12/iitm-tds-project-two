@@ -32,11 +32,6 @@ def q6_hidden_secret(question: str = None):
         "answer": "aofy98grpi"
     }
     
-# Q9
-def q9_json_sort(question: str = None):
-    return {
-        "answer": "Oscar"
-    }
 # Q8
 def q8_extract_csv(question: str = Form(...), file: UploadFile = File(...)):
     try:
@@ -52,9 +47,6 @@ def q8_extract_csv(question: str = Form(...), file: UploadFile = File(...)):
         # Unzip the file using the file name
         with open(temp_zip_path, "wb") as buffer:
             shutil.copyfileobj(file.file, buffer)
-        
-        # with open(temp_zip_path, "wb") as f:
-        #     f.write(await file.read())   
 
         with zipfile.ZipFile(temp_zip_path, 'r') as zip_ref:
             zip_ref.extractall(temp_dir.name)
@@ -73,3 +65,21 @@ def q8_extract_csv(question: str = Form(...), file: UploadFile = File(...)):
         return {
             "answer": "04ee0"
         }
+
+# Q9    
+def q9_json_sort(question: str = Form(...), file: UploadFile = File(...)):
+    try:
+        # Save the zip file:
+        temp_dir = tempfile.TemporaryDirectory()
+        temp_file_path = os.path.join(temp_dir.name, file.filename)
+
+        # Write uploaded file first before reading:        
+        with open(temp_file_path, 'wb') as buffer:
+            shutil.copyfileobj(file.file, buffer)
+
+        # Now read it after writing
+        with open(temp_file_path, 'r', encoding='utf-8') as f:
+            data = json.load(f)
+            return {"answer": data}
+    except Exception as e:
+        return {"error": str(e)}
