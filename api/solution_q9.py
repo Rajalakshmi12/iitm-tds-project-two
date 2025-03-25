@@ -1,10 +1,4 @@
 def q9_json_sort(question_text):
-    """
-    Extracts the JSON from the given question text, sorts it by 'age' (then 'name' in case of ties),
-    and returns the formatted JSON without spaces or newlines.
-    """
-    import re
-    import json
 
     # Extract JSON part using regex
     json_match = re.search(r'\[.*\]', question_text, re.DOTALL)
@@ -26,4 +20,6 @@ def q9_json_sort(question_text):
         return result_json
     else:
         return "Error: No JSON data found in the question text."
-q9_json_sort(question_text)
+
+question = "Let's make sure you know how to use JSON. Sort this JSON array of objects by the value of the age field. In case of a tie, sort by the name field. Paste the resulting JSON below without any spaces or newlines"
+print(q9_json_sort(question))

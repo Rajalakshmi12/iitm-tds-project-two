@@ -7,6 +7,7 @@ import pandas as pd
 from io import BytesIO
 import os
 import importlib
+import tempfile
 
 # Function Template import
 from api.function_template import *
@@ -60,12 +61,13 @@ def find_closest_question(input_question: str, df: pd.DataFrame):
     
     return best_match
 
-@app.get("/api/")
-async def ask_question(question: str = Query(..., title="User Question")):
+@app.post("/api/")
+async def ask_question(question: str = Form(..., title="User Question"),file: UploadFile = File(None)):
     """Finds the closest question from CSV based on keyword matches and returns the corresponding function name."""
     try:
         module_path = "api.function_template"
-        
+        functions_with_file = ["q8_extract_csv"]
+
         df = load_questions("api/question_template.csv")  # Ensure the correct CSV path
         function_name = find_closest_question(question, df)
         
@@ -78,7 +80,10 @@ async def ask_question(question: str = Query(..., title="User Question")):
             
                 try:
                     if function_to_call:
-                        function_output = function_to_call(question=question)
+                        if function_name in functions_with_file:
+                            function_output = function_to_call(question=question, file=file)
+                        else:
+                            function_output = function_to_call(question=question)
                         return {"function_name": function_name, "output": function_output}
                     else:
                         raise HTTPException(status_code=404, detail=f"Function {function_name} {function_to_call} not found in {module_path}")
@@ -91,3 +96,4 @@ async def ask_question(question: str = Query(..., title="User Question")):
                 
     except Exception as e:
         raise HTTPException(status_code=400, detail=str(e))
+
