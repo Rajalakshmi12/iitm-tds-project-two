@@ -22,7 +22,7 @@ Note: This will ONLY work in Office 365.
 What is the result?",q5_excel_sort,"excel, sort, formulas, formula, office",Done,,,GA1,10,
 6,"Just above this paragraph, there's a hidden input with a secret value.
 
-What is the value in the hidden input?",q6_hidden_secret,"hidden, secret, paragraph, input, value",Hardcoded,Link: https://exam.sanand.workers.dev/tds-2025-01-ga1,,GA1,aofy98grpi,
+What is the value in the hidden input?",q6_hidden_secret,"hidden, secret, paragraph, value",Hardcoded,Link: https://exam.sanand.workers.dev/tds-2025-01-ga1,,GA1,aofy98grpi,
 7,"How many Wednesdays are there in the date range 1980-04-16 to 2009-02-11?
 The dates are in the year-month-day format. Include both the start and end date in your count. You can do this using any tool (e.g. Excel, Python, JavaScript, manually).",q7_day_dates,"Mondays, Tuesdays, Wednesdays, Thursdays, Fridays, Saturdays, Sundays, format, start, end, date, count",Soon,,,GA1,,"http://127.0.0.1:8000/api/?question=How%20many%20Wednesdays%20are%20there%20in%20the%20date%20range%201980-04-16%20to%202010-02-11?%20The%20dates%20are%20in%20the%20year-month-day%20format.%20Include%20both%20the%20start%20and%20end%20date%20in%20your%20count.%20You%20can%20do%20this%20using%20any%20tool%20(e.g.%20Excel,%20Python,%20JavaScript,%20manually)."
 8,"Download and unzip file which has a single extract.csv file inside.
@@ -153,7 +153,7 @@ response.raise_for_status()
 # Extract and print the response
 result = response.json()
 print(result)",
-30,How many input tokens does it use up?,"tokens, input",,Soon,,,,,
+30,How many input tokens does it use up?,q30_token_count,"tokens, count",Soon,,,,,
 31,,,,,,,,,
 32,,,,,,,,,
 33,,,,,,,,,
