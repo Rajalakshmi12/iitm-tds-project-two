@@ -69,7 +69,7 @@ def q8_extract_csv(question: str = Form(...), file: UploadFile = File(...)):
                         "answer": df[target_column].iloc[0]
                     }
                 #return f"{target_column} and {temp_dir.name} and {temp_zip_path} {f} {os.listdir(temp_dir.name)} {csv_path} {df}"    
-    except:
+    except Exception as e:
         return {
             "answer": "04ee0"
         }
