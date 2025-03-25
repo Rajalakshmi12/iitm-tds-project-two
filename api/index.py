@@ -8,6 +8,9 @@ from io import BytesIO
 import os
 import importlib
 import tempfile
+import logging
+logging.basicConfig(level=logging.INFO)
+logger = logging.getLogger(__name__)
 
 # Function Template import
 from api.function_template import *
@@ -33,6 +36,9 @@ async def read_root():
 @app.post("/vercel/")
 async def read_api_root():
     return {"message": "Welcome to Vercel POST!"}
+
+
+
 
 def load_questions(csv_path: str):
     try:
@@ -70,29 +76,38 @@ async def ask_question(question: str = Form(..., title="User Question"),file: Up
         module_path = "api.function_template"
         functions_with_file = ["q8_extract_csv", "q9_json_sort"]
 
-        df = load_questions("api/question_template.csv")  # Ensure the correct CSV path
+        csv_path = os.path.join(os.path.dirname(__file__), "question_template.csv")
+        df = load_questions(csv_path)
+        
+        #df = load_questions("api/question_template.csv")  # Ensure the correct CSV path
         function_name = find_closest_question(question, df)
         
         if not function_name:
-            return "No closest match found, try another question."
+            return {"answer": ""}
+            
         else:
+            logger.info("Function to call before hasAttr: %s", function_name)
             # ✅ Check if function exists and call it dynamically
             if hasattr(function_module, function_name):
                 function_to_call = getattr(function_module, function_name)
-            
                 try:
                     if function_to_call:
+                        logger.info("Function to call after valid hasAttr: %s", function_to_call)
                         if function_name in functions_with_file:
-                            function_output = function_to_call(question=question, file=file)
+                            if file is None:
+                                function_output = function_to_call(question=question)
+                            else:
+                                function_output = function_to_call(question=question, file=file)
                         else:
                             function_output = function_to_call(question=question)
                         return {"function_name": function_name, "output": function_output}
                     else:
                         raise HTTPException(status_code=404, detail=f"Function {function_name} {function_to_call} not found in {module_path}")
 
-                except TypeError:
-                        return function_to_call
-
+                # except TypeError:
+                #         return function_to_call
+                except TypeError as te:
+                        raise HTTPException(status_code=400, detail=f"TypeError when calling {function_name}: {str(te)}")
             else:
                 return q0_nomatch(question)
                 

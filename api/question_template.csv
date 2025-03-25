@@ -13,7 +13,7 @@ What is the output of the command?",q3_readme_shasum,"readme, prettier, sha256su
 4,"Let's make sure you can write formulas in Google Sheets. Type this formula into Google Sheets. (It won't work in Excel)
 
 =SUM(ARRAY_CONSTRAIN(SEQUENCE(100, 100, 8, 13), 1, 10))
-What is the result?",q4_array_constraint,"formula, google, sheet, array, constrain, array_constrain",Done,,,GA1,665,
+What is the result?",q4_array_constraint,"formula, google, sheet, array, constrain, array_constrain",Done-Working-Tested,,,GA1,665,"curl -X POST ""http://localhost:8000/api/""   -H ""Content-Type: multipart/form-data""   -F ""question=Let's make sure you can write formulas in Google Sheets. Type this formula into Google Sheets. (It won't work in Excel) =SUM(ARRAY_CONSTRAIN(SEQUENCE(100, 100, 8, 13), 1, 10)) What is the result?"""
 5,"Let's make sure you can write formulas in Excel. Type this formula into Excel.
 
 Note: This will ONLY work in Office 365.
@@ -128,8 +128,32 @@ Write a FastAPI server that serves this data. For example, /api should return al
 Create a tunnel to the Llamafile server using ngrok.
 
 What is the ngrok URL? It might look like: https://[random].ngrok-free.app/",,,,,,GA2,https://effb-2a06-5902-4603-2000-d869-eb01-3bb8-c106.ngrok-free.app,
-29,,,,,,,,,
-30,,,,,,,,,
+29,,,,Hardcode-Sorry,,,,"import httpx
+
+# url stores the OpenAI's API endpoint and dummy API key
+url = ""https://api.openai.com/v1/chat/completions""
+headers = {
+    ""Authorization"": ""Bearer key_4%t64$£"",
+    ""Content-Type"": ""application/json""
+}
+
+# Define the request payload with two messages as mentioned in the activity
+payload = {
+    ""model"": ""gpt-4o-mini"",
+    ""messages"": [
+        {""role"": ""system"", ""content"": ""Analyze the sentiment of the given text & classify it as GOOD, BAD, or NEUTRAL !""},
+        {""role"": ""user"", ""content"": ""q8Zl\nrnNGdi IXTIMdv Xd1 vP1 ZWF xMsEHp2LUiOAw7E1""}
+    ]
+}
+
+# Send the request to OpenAI API
+response = httpx.post(url, json=payload, headers=headers, timeout=10)
+response.raise_for_status()
+
+# Extract and print the response
+result = response.json()
+print(result)",
+30,How many input tokens does it use up?,"tokens, input",,Soon,,,,,
 31,,,,,,,,,
 32,,,,,,,,,
 33,,,,,,,,,

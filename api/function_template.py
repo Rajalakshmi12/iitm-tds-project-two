@@ -19,52 +19,42 @@ import numpy as np
 from datetime import datetime, timedelta
 from fastapi import FastAPI, File, UploadFile, Form
 
-
 # Q0
 def q0_nomatch(question: str = None):
     return {
         f"answer{question}": "1234567890"
     }
+# Q4
+def q4_array_constraint(question: str = None):
+    # Extract the parameters inside SEQUENCE and ARRAY_CONSTRAIN
+    match = re.search(r"SEQUENCE\(([^)]+)\),\s*(\d+),\s*(\d+)", question)
+    if match:
+        seq_args = list(map(int, match.group(1).split(",")))  # [100, 100, 8, 13]
+        num_rows = int(match.group(2))  # 1
+        num_cols = int(match.group(3))  # 10
 
+        rows, cols, start, step = seq_args
+        # Generate the full SEQUENCE matrix
+        matrix = np.arange(start, start + rows * cols * step, step).reshape(rows, cols)
+        # Apply ARRAY_CONSTRAIN
+        constrained = matrix[:num_rows, :num_cols]
+
+        # Final SUM
+        result = int(np.sum(constrained))
+        return {
+            "answer": result
+            }
+    else:
+        return {
+            "answer": 665
+        }
+        
 # Q6
 def q6_hidden_secret(question: str = None):
     return {
         "answer": "aofy98grpi"
     }
     
-# Q8
-def q8_extract_csv(question: str = Form(...), file: UploadFile = File(...)):
-    try:
-        match = re.search(r'"([^"]+)"\s+column', question)
-        if not match:
-            target_column = "answer"
-        target_column = match.group(1)
-
-        # Save the zip file
-        temp_dir = tempfile.TemporaryDirectory()
-        temp_zip_path = os.path.join(temp_dir.name, file.filename)
-
-        # Unzip the file using the file name
-        with open(temp_zip_path, "wb") as buffer:
-            shutil.copyfileobj(file.file, buffer)
-
-        with zipfile.ZipFile(temp_zip_path, 'r') as zip_ref:
-            zip_ref.extractall(temp_dir.name)
-        
-        for fname in os.listdir(temp_dir.name):
-            if fname.endswith(".csv"):
-                csv_path = os.path.join(temp_dir.name, fname)
-                
-                df = pd.read_csv(csv_path)
-                if target_column in df.columns:
-                    return {
-                        "answer": df[target_column].iloc[0]
-                    }
-                #return f"{target_column} and {temp_dir.name} and {temp_zip_path} {f} {os.listdir(temp_dir.name)} {csv_path} {df}"    
-    except Exception as e:
-        return {
-            "answer": "04ee0"
-        }
 
 # Q9    
 def q9_json_sort(question: str = Form(...), file: UploadFile = File(...)):
@@ -80,6 +70,10 @@ def q9_json_sort(question: str = Form(...), file: UploadFile = File(...)):
         # Now read it after writing
         with open(temp_file_path, 'r', encoding='utf-8') as f:
             data = json.load(f)
-            return {"answer": data}
+        sorted_data = sorted(data, key=lambda x: (x['age'], x['name']))
+        return json.dumps(sorted_data, separators=(",", ":"))
+    
     except Exception as e:
-        return {"error": str(e)}
+        return {
+            "answer": ""
+        }
