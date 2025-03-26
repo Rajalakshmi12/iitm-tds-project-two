@@ -1,19 +1,32 @@
 import json
 import base64
+import tempfile
+import shutil
+import os
 from fastapi import File, Form, UploadFile
 
-# Function to extract necessary information and generate JSON body
+# Function to handle file upload, process the image and generate JSON body
 def q32_extract_text(question: str = Form(...), file: UploadFile = File(...)):
-    model = "gpt-4o-mini"  # The model is fixed as per the question
+    # Fixed model and user content
+    model = "gpt-4o-mini"
+    user_content = "Extract text from this image"
 
-    # Extract user content from the question text (based on the example)
-    user_content = "Extract text from this image"  # We know this from the question
+    # Step 1: Create a temporary directory to save the uploaded file
+    with tempfile.TemporaryDirectory() as temp_dir:
+        temp_file_path = os.path.join(temp_dir, file.filename)
 
-    # Convert the image to base64
-    with open(image_file, "rb") as img_file:
-        image_base64 = base64.b64encode(img_file.read()).decode("utf-8")
+        # Step 2: Write the uploaded file to the temporary directory
+        with open(temp_file_path, 'wb') as buffer:
+            shutil.copyfileobj(file.file, buffer)
+
+        # Step 3: Read the image from the temporary location
+        with open(temp_file_path, 'rb') as img_file:
+            image_bytes = img_file.read()
+
+        # Step 4: Base64 encode the image
+        image_base64 = base64.b64encode(image_bytes).decode("utf-8")
     
-    # Define the request body
+    # Step 5: Construct the JSON body with the base64 encoded image
     request_body = {
         "model": model,
         "messages": [
@@ -34,21 +47,5 @@ def q32_extract_text(question: str = Form(...), file: UploadFile = File(...)):
             }
         ]
     }
-
+    
     return json.dumps(request_body, indent=2)
-
-# Example usage:
-question = """Write just the JSON body (not the URL, nor headers) for the POST request that sends these two pieces of content (text and image URL) to the OpenAI API endpoint.
-Use gpt-4o-mini as the model.
-Send a single user message to the model that has a text and an image_url content (in that order).
-The text content should be Extract text from this image.
-Send the image_url as a base64 URL of the image above. CAREFUL: Do not modify the image."""
-
-# Provide the image file path (replace this with your actual image path)
-image_file = "path/to/your/image.png"
-
-# Generate the request body
-request_body = q32_extract_text(question, image_file)
-
-# Print the generated request body
-print(request_body)
