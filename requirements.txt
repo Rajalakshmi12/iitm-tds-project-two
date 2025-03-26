@@ -12,6 +12,5 @@ feedparser
 pdfplumber
 tabula-py
 numpy
-shutil
 python-multipart
 tiktoken

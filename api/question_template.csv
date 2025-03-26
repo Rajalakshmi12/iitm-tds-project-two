@@ -13,7 +13,9 @@ What is the output of the command?",q3_readme_shasum,"readme, prettier, sha256su
 4,"Let's make sure you can write formulas in Google Sheets. Type this formula into Google Sheets. (It won't work in Excel)
 
 =SUM(ARRAY_CONSTRAIN(SEQUENCE(100, 100, 8, 13), 1, 10))
-What is the result?",q4_array_constraint,"formula, google, sheet, array, constrain, array_constrain",Done-Working-Tested,,,GA1,665,"curl -X POST ""http://localhost:8000/api/""   -H ""Content-Type: multipart/form-data""   -F ""question=Let's make sure you can write formulas in Google Sheets. Type this formula into Google Sheets. (It won't work in Excel) =SUM(ARRAY_CONSTRAIN(SEQUENCE(100, 100, 8, 13), 1, 10)) What is the result?"""
+What is the result?",q4_array_constraint,"formula, google, sheet, array, constrain, array_constrain","Done,
+Working,
+Tested",,,GA1,665,"curl -X POST ""http://localhost:8000/api/""   -H ""Content-Type: multipart/form-data""   -F ""question=Let's make sure you can write formulas in Google Sheets. Type this formula into Google Sheets. (It won't work in Excel) =SUM(ARRAY_CONSTRAIN(SEQUENCE(100, 100, 8, 13), 1, 10)) What is the result?"""
 5,"Let's make sure you can write formulas in Excel. Type this formula into Excel.
 
 Note: This will ONLY work in Office 365.
@@ -192,7 +194,11 @@ What is the JSON body we should send to https://api.openai.com/v1/chat/completio
 Use gpt-4o-mini as the model.
 Send a single user message to the model that has a text and an image_url content (in that order).
 The text content should be Extract text from this image.
-Send the image_url as a base64 URL of the image above. CAREFUL: Do not modify the image.",q32_extract_text,"gpt-4o-mini, content, text, image. extract",,,,,,
+Send the image_url as a base64 URL of the image above. CAREFUL: Do not modify the image.",q32_extract_text,"gpt-4o-mini, content, text, image. extract",,,,,"{    ""model"": ""gpt-4o-mini"",    ""messages"": [{        ""role"":""user"",
+        ""content"": [            {               ""type"": ""text"",               ""text"": ""Extract text from this image""            },            {                ""type"": ""image_url"",                ""image_url"": {""url"": ""data:image/png;base64, <base image in 64 base encoding>""}            }            
+        ]    }    ]}","curl -X POST ""http://localhost:8000/api/"" \
+-H ""Content-Type: multipart/form-data"" \
+-F ""question=Write just the JSON body (not the URL, nor headers) for the POST request that sends these two pieces of content (text and image URL) to the OpenAI API endpoint. Use gpt-4o-mini as the model. Send a single user message to the model that has a text and an image_url content (in that order). The text content should be Extract text from this image. Send the image_url as a base64 URL of the image above. CAREFUL: Do not modify the image.""   -F ""file=@text_extract_image.png"""
 33,,,,,,,,,
 34,,,,,,,,,
 35,,,,,,,,,
