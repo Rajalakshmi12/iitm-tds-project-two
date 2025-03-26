@@ -30,10 +30,15 @@ The dates are in the year-month-day format. Include both the start and end date 
 What is the value in the ""answer"" column of the CSV file?",q8_extract_csv,"unzip, extract, answer, value, column",,,,GA1,04ee0,"$ curl -X POST ""http://127.0.0.1:8000/api/""   -H ""Content-Type: multipart/form-data""   -F ""question=What is the value in the \""answer\"" column of the CSV file?""   -F ""file=@q-extract-csv-zip.zip"""
 9,"Let's make sure you know how to use JSON. Sort this JSON array of objects by the value of the age field. In case of a tie, sort by the name field. Paste the resulting JSON below without any spaces or newlines.
 
-[{""name"":""Alice"",""age"":48},{""name"":""Bob"",""age"":69},{""name"":""Charlie"",""age"":27},{""name"":""David"",""age"":26},{""name"":""Emma"",""age"":68},{""name"":""Frank"",""age"":90},{""name"":""Grace"",""age"":78},{""name"":""Henry"",""age"":27},{""name"":""Ivy"",""age"":85},{""name"":""Jack"",""age"":74},{""name"":""Karen"",""age"":43},{""name"":""Liam"",""age"":52},{""name"":""Mary"",""age"":19},{""name"":""Nora"",""age"":36},{""name"":""Oscar"",""age"":5},{""name"":""Paul"",""age"":11}]",q9_json_sort,"json, sort, spaces, newlines, field",Soon,Json file,,GA1,,"curl -X POST ""http://127.0.0.1:8000/api/""
--H ""Content-Type: multipart/form-data""
--F ""question=Let's make sure you know how to use JSON. Sort this JSON array of objects by the value of the age field. In case of a tie, sort by the name field. Paste the resulting JSON below without any spaces or newlines""
--F ""file=@GA1_question9.json"""
+[{""name"":""Alice"",""age"":48},{""name"":""Bob"",""age"":69},{""name"":""Charlie"",""age"":27},{""name"":""David"",""age"":26},{""name"":""Emma"",""age"":68},{""name"":""Frank"",""age"":90},{""name"":""Grace"",""age"":78},{""name"":""Henry"",""age"":27},{""name"":""Ivy"",""age"":85},{""name"":""Jack"",""age"":74},{""name"":""Karen"",""age"":43},{""name"":""Liam"",""age"":52},{""name"":""Mary"",""age"":19},{""name"":""Nora"",""age"":36},{""name"":""Oscar"",""age"":5},{""name"":""Paul"",""age"":11}]",q9_json_sort,"json, sort, spaces, newlines, field","Deployed-
+Tested-
+Vercel-
+With-
+File-
+Success",Json file,,GA1,,"curl -X POST ""https://iitm-tds-project-two.vercel.app/api/"" \
+  -H ""Content-Type: multipart/form-data"" \
+  -F ""question=Sort this JSON array of objects by the value of the age field. In case of a tie, sort by the name field. Paste the resulting JSON below without any spaces or newlines"" \
+  -F ""file=@GA1_question9.json"""
 10,"Download  file and use multi-cursors and convert it into a single JSON object, where key=value pairs are converted into {key: value, key: value, ...}.
 
 What's the result when you paste the JSON at tools-in-data-science.pages.dev/jsonhash and click the Hash button?",q10_multi_cursors,"multi-cursors, multi, cursors, single, json, hash, button",Soon,,,GA1,,
@@ -153,9 +158,41 @@ response.raise_for_status()
 # Extract and print the response
 result = response.json()
 print(result)",
-30,How many input tokens does it use up?,q30_token_count,"tokens, count",Soon,,,,,
-31,,,,,,,,,
-32,,,,,,,,,
+30,How many input tokens does it use up?,q30_token_count,"tokens, count","Deployed-
+Tested-
+Vercel-
+With-
+File-
+Success",,,,416,"curl -X POST ""https://iitm-tds-project-two.vercel.app/api/"" \
+  -H ""Content-Type: multipart/form-data"" \
+  -F ""question=How many input tokens does it use up?"" \
+  -F ""file=@GA3_question30.txt"""
+31,"Write the body of the request to an OpenAI chat completion call that:
+Uses model gpt-4o-mini
+Has a system message: Respond in JSON
+Has a user message: Generate 10 random addresses in the US
+Uses structured outputs to respond with an object addresses which is an array of objects with required fields: zip (number) longitude (number) city (string) .
+Sets additionalProperties to false to prevent additional properties.
+Note that you don't need to run the request or use an API key; your task is simply to write the correct JSON body.
+
+What is the JSON body we should send to https://api.openai.com/v1/chat/completions for this?",q31_generate_llm,"gpt-4o-mini, addresses, zip, properties, generate",,,,,"{  ""model"": ""gpt-4o-mini"",  ""messages"": [    {      ""role"": ""system"",
+      ""content"": ""Respond in JSON""    },    {      ""role"": ""user"",
+      ""content"": ""Generate 10 random addresses in the US""    }  ],
+  ""response_format"": {    ""type"": ""json_schema"",    ""json_schema"": {
+      ""name"": ""address_response"",      ""strict"": true,
+      ""schema"": {        ""type"": ""object"",        ""properties"": {           ""addresses"": {            ""type"": ""array"",             ""items"": {              ""type"": ""object"",              ""properties"": {                ""zip"": { ""type"": ""number"", ""description"": ""The zip code, eg. 10001"" },
+                ""longitude"": { ""type"": ""number"", ""description"": ""The longitude, -87.2564""  },                ""city"": { ""type"": ""string"", ""description"": ""The city, eg. New York""  }              },              ""required"": [""zip"", ""longitude"", ""city""],
+              ""additionalProperties"": false            }          }        },
+        ""required"": [""addresses""],
+        ""additionalProperties"": false      }    }  }  }","curl -X POST ""http://localhost:8000/api/"" \
+-H ""Content-Type: multipart/form-data"" \
+-F ""question=As part of the integration process, you need to write the body of the request to an OpenAI chat completion call that: Uses model gpt-4o-mini Has a system message: Respond in JSON Has a user message: Generate 10 random addresses in the US Uses structured outputs to respond with an object addresses which is an array of objects with required fields: zip (number) longitude (number) city (string) . Sets additionalProperties to false to prevent additional properties. Note that you don't need to run the request or use an API key; your task is simply to write the correct JSON body.What is the JSON body we should send to https://api.openai.com/v1/chat/completions for this? (No need to run it or to use an API key"""
+32,"Write just the JSON body (not the URL, nor headers) for the POST request that sends these two pieces of content (text and image URL) to the OpenAI API endpoint.
+
+Use gpt-4o-mini as the model.
+Send a single user message to the model that has a text and an image_url content (in that order).
+The text content should be Extract text from this image.
+Send the image_url as a base64 URL of the image above. CAREFUL: Do not modify the image.",q32_extract_text,"gpt-4o-mini, content, text, image. extract",,,,,,
 33,,,,,,,,,
 34,,,,,,,,,
 35,,,,,,,,,
