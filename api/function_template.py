@@ -29,19 +29,3 @@ def q0_nomatch(question: str = None):
         f"answer{question}": "1234567890"
     }
 
-# Q53
-def q53_json_sales(question: str = Form(...), file: UploadFile = File(...)):
-    try:
-        with tempfile.TemporaryDirectory() as temp_dir:
-        temp_file_path =  os.path.join(temp_dir, file.)   
-        return {
-            "answer": "q53_json_sales"
-        }
-    except:
-        return "error!"
-       
-# Q54
-def q54_key_count(question: str = Form(...), file: UploadFile = File(...)):
-    return {
-        "answer": "q54_key_count"
-    }
