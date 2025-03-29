@@ -231,7 +231,12 @@ Be located in .github/workflows/ directory",q45_github_action,,Later,,PDF file,G
 51,,,,,,,,,
 52,,,,,,,,,
 53,,,,,,,,,
-54,,,,,,,,,
-55,,,,,,,,,
+54,"As a data analyst at DataSure Technologies, you have been tasked with developing a script that processes a large JSON log file and counts the number of times a specific key, represented by the placeholder AWSH, appears in the JSON structure. How many times does AWSH appear as a key? Output the total number of occurrences",q54_key_count,"count, times, json, appear, key",q-extract-nested-json-keys,,,,,
+55,,,,,,,,"SELECT post_id, timestamp, json_extract_string(json_extract(comments, '$[0]'), '$.stars.useful') AS useful_stars
+FROM social_media
+WHERE json_extract_string(json_extract(comments, '$[0]'), '$.stars.useful')::FLOAT >= 3 AND 
+timestamp > '2024-11-25T12:48:16.162Z'::TIMESTAMP
+ORDER BY timestamp DESC;",
 56,,,,,,,,,
-57,,,,,,,,,
+57,"As a digital forensics analyst at PixelGuard Solutions, your task is to reconstruct the original image from its scrambled pieces. You are provided with the 25 individual image pieces (put together as a single image). A mapping file detailing the original (row, col) position for each piece and its current (row, col) location. Here is the image. It is a 500x500 pixel image that has been cut into 25 (5x5) pieces:
+Upload the reconstructed image by moving the pieces from the scrambled position to the original position:",q57_reconstruct_image,"image, row, col, reconstruct, original",,,,,,
