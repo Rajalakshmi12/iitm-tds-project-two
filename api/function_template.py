@@ -17,18 +17,20 @@ from io import StringIO
 from bs4 import BeautifulSoup
 from tabula import convert_into
 from urllib.parse import urljoin
+from PIL import Image
+import numpy as np
+import colorsys
 import shutil
 import numpy as np
 from datetime import datetime, timedelta
 from fastapi import FastAPI, File, UploadFile, Form
-from PIL import Image
-
 
 # Q0
 def q0_nomatch(question: str = None):
     return {
         "answer": "1234567890"
     }
+    
 
 # Q1
 def q1_code_vsc(question: str = None):
@@ -292,6 +294,24 @@ def q9_json_sort(question: str = Form(...), file: UploadFile = File(...)):
 def q10_multi_cursors(question: str = None):
     return {
         "answer": "hardcoded-response"
+    }
+
+# Q23
+def q23_pixels_brightness(question: str = Form(...), file: UploadFile = File(...)):
+    with tempfile.TemporaryDirectory() as temp_dir:
+        temp_file_path = os.path.join(temp_dir, file.filename)
+
+        with open(temp_file_path, 'wb') as buffer:
+            shutil.copyfileobj(file.file, buffer)
+
+        # Now open and process image
+        image = Image.open(temp_file_path).convert("RGB")
+        rgb = np.array(image) / 255.0
+        lightness = np.apply_along_axis(lambda x: colorsys.rgb_to_hls(*x)[1], 2, rgb)
+        light_pixels = int(np.sum(lightness > 0.927))
+
+    return {
+        "answer": light_pixels
     }
 
 # Q30
@@ -863,6 +883,13 @@ def q53_json_sales(question: str = Form(...), file: UploadFile = File(...)):
         return {
             "answer": 53396
             }
+
+# Q54
+def q54_key_count(question: str = Form(...), file: UploadFile = File(...)):
+    return {
+        "answer": "q54_key_count"
+    }
+
 			
 # Q57
 def q57_reconstruct_image(question: str = Form(...), file: UploadFile = File(...)):
@@ -972,3 +999,4 @@ def q57_reconstruct_image(question: str = Form(...), file: UploadFile = File(...
 
     except Exception as e:
         return "error3!"
+	
