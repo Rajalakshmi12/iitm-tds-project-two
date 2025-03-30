@@ -21,16 +21,21 @@ from PIL import Image
 import numpy as np
 import colorsys
 import shutil
+import sqlite3
 import numpy as np
 from datetime import datetime, timedelta
 from fastapi import FastAPI, File, UploadFile, Form
+from fastapi.responses import JSONResponse
+from io import BytesIO
+
+
+#def q23_pixels_brightness(question: str = Form(...), file: UploadFile = File(...)):
 
 # Q0
 def q0_nomatch(question: str = None):
     return {
-        "answer": "1234567890"
-    }
-    
+        "answer": "q0_nomatch"
+    } 
 
 # Q1
 def q1_code_vsc(question: str = None):
@@ -296,9 +301,111 @@ def q10_multi_cursors(question: str = None):
         "answer": "hardcoded-response"
     }
 
+#Q18
+def q18_sqlite_sales(question: str = None):
+    
+    match = re.search(
+    r'(?:["\'](?P<quoted>\w+)["\']|(?P<unquoted>\b\w+\b))\s+ticket type',
+    question,
+    re.IGNORECASE
+)
+
+    valid_types = {'Gold', 'SILVER', 'Bronze'}
+
+    ticket_type = (match.group('quoted') or match.group('unquoted')) if match else None
+
+    valid_lower = {t.lower() for t in valid_types}
+    if not ticket_type or ticket_type.lower() not in valid_lower:
+        ticket_type = 'Gold'
+    else:
+        # Preserve original casing from valid set
+        ticket_type = next(v for v in valid_types if v.lower() == ticket_type.lower())
+        
+    query = f"""
+    SELECT SUM(units * price) AS total_sales
+    FROM tickets
+    WHERE type = {ticket_type}
+    """
+
+    return {
+        "answer": query
+    }
+
+	
+# Q19
+def q19_markdown_gen(question: str = None):
+    content = """# Introduction
+    It's my journey on my everyday walking habit
+
+    ## Methodology
+    Simple habitual changes that got me into regular walking habit
+
+    **important**
+    To understand your own interests
+
+    *note* I am keeping this simple
+
+    You can use the `len()` function to get the length of any dict type of variable in python
+
+    ```python
+    # This is Python code
+    def not_hello_world():
+        print("Time to read a new book!")
+    ```
+    ### I do not miss to carry a 
+    - Backbag
+
+    #### How I created this habit to go on a walk everyday morning without a miss?
+    1. Coffee
+    2. Book to read at least 2 pages per day
+    3. A small talk with my Cafe staffs
+
+    | Genre         | Title of the Book |
+    |-----------------|--------------------------------|
+    | Philosophy | Everything is f*cked       |
+
+    [To Buy](https://www.amazon.co.uk/EVERY-THING-CKED-BOOK-ABOUT/dp/0062888439)
+
+    ![Cover Page](https://dailystoic.com/wp-content/uploads/2019/12/image1-768x960.png)
+
+    > At the end, everything is meaningless !
+    """
+    return {"answer": content}
+
+#Q20
+def q20_image_compress(question: str = Form(...), file: UploadFile = File(...)):
+    match = re.search(r"\d[\d,]*", question)
+    byte_limit = int(match.group(0).replace(",", "")) if match else 1500
+
+    with tempfile.TemporaryDirectory() as temp_dir:
+        # Define paths
+        input_path = os.path.join(temp_dir, file.filename)
+        output_path = os.path.join(temp_dir, "compressed.webp")
+
+        # 2. Save original uploaded file
+        with open(input_path, "wb") as buffer:
+            shutil.copyfileobj(file.file, buffer)
+
+        # 3. If not already .webp, convert with lossless compression
+        if not file.filename.lower().endswith(".webp"):
+            with Image.open(input_path) as img:
+                img.save(output_path, format="WEBP", lossless=True)
+        else:
+            shutil.copy(input_path, output_path)
+
+        with open(output_path, "rb") as f:
+            image_bytes = f.read()
+
+        if len(image_bytes) > byte_limit:
+            return {"answer": 0}
+
+        # ✅ Encode image bytes to base64
+        base64_image = base64.b64encode(image_bytes).decode("utf-8")
+        return {"answer": base64_image}
+
 # Q23
 def q23_pixels_brightness(question: str = Form(...), file: UploadFile = File(...)):
-    with tempfile.TemporaryDirectory() as temp_dir:
+    with tem.TemporaryDirectory() as temp_dir:
         temp_file_path = os.path.join(temp_dir, file.filename)
 
         with open(temp_file_path, 'wb') as buffer:
@@ -456,7 +563,12 @@ def q32_extract_text(question: str = Form(...), file: UploadFile = File(...)):
         ]
     }
     
-    return json.dumps(request_body, indent=2)
+    flat_json_string = json.dumps(request_body, separators=(",", ":"))
+
+    return {
+        "answer": flat_json_string
+    }
+    
 
 
 # Q38

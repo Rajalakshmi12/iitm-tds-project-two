@@ -51,8 +51,8 @@ What's the result when you paste the JSON at tools-in-data-science.pages.dev/jso
 15,,,,,,,GA1,,,
 16,,,,,,,GA1,,,
 17,,,,,,,GA1,,,
-18,,,,,,,GA1,,,
-19,Markdown Generation,,,,,,GA2,"# Introduction
+18,"There is a tickets table in a SQLite database that has columns type, units, and price. Each row is a customer bid for a concert ticket. What is the total sales of all the items in the ""Gold"" ticket type? Write SQL to calculate it.",q18_sqlite_sales,"sqlite, units, ticket, type",,,,GA1,,,
+19,"Write documentation in Markdown for an **imaginary** analysis of the number of steps you walked each day for a week, comparing over time and with friends. The Markdown must include",q19_markdown_gen,"write, documentation, markdown",,,,GA2,"# Introduction
 It's my journey on my everyday walking habit
 
 ## Methodology
@@ -86,11 +86,11 @@ def not_hello_world():
 
 ![Cover Page](https://dailystoic.com/wp-content/uploads/2019/12/image1-768x960.png)
 
-> At the end, everything is meaningless !",,
+> At the end, everything is meaningless !","curl -X POST ""http://localhost:8000/api/""   -H ""Content-Type: multipart/form-data""   -F ""question=Write documentation in Markdown for an **imaginary** analysis of the number of steps you walked each day for a week, comparing over time and with friends. The Markdown must include""",
 20,"Download the image below and compress it losslessly to an image that is less than 1,500 bytes.
 By losslessly, we mean that every pixel in the new image should be identical to the original image.
 
-Upload your losslessly compressed image (less than 1,500 bytes)",,,,,,GA2,,,
+Upload your losslessly compressed image (less than 1,500 bytes)",q20_image_compress,"compress, compressed, image, losslessly",,,,GA2,,"curl -X POST ""http://localhost:8000/api/""   -H ""Content-Type: multipart/form-data""   -F ""question=Download the image below and compress it losslessly to an image that is less than 1,500 bytes. By losslessly, we mean that every pixel in the new image should be identical to the original image. Upload your losslessly compressed image, less than 1,500 bytes""   -F ""file=@shapes.png""",
 21,"Publish a page using GitHub Pages that showcases your work. Ensure that your email address 23ds3000149@ds.study.iitm.ac.in is in the page's HTML.
 
 GitHub pages are served via CloudFlare which obfuscates emails. So, wrap your email address inside a:
@@ -102,8 +102,7 @@ What is the GitHub Pages URL? It might look like: https://[USER].github.io/[REPO
 Some code given
 
 What is the result? (It should be a 5-character string)",,,,,,GA2,702a6,,
-23,"Download this image. Create a new Google Colab notebook and run this code (after fixing a mistake in it) to calculate the number of pixels with a certain minimum brightness:
-What is the result? (It should be a number)",q23_pixels_brightness,"number pixels, brightness, calculate",,,,GA2,7,,
+23,Create a new Google Colab notebook and run this code (after fixing a mistake in it) to calculate the number of pixels with a certain minimum brightness What is the result,q23_pixels_brightness,"number pixels, brightness, calculate",,,,GA2,7,,
 24,"Download this  which has the marks of 100 imaginary students.
 
 Create and deploy a Python app to Vercel. Expose an API so that when a request like https://your-app.vercel.app/api?name=X&name=Y is made, it returns a JSON response with the marks of the names X and Y in the same order, like this:
@@ -233,7 +232,7 @@ Be located in .github/workflows/ directory",q45_github_action,,Later,,PDF file,G
 51,,,,,,,,,,
 52,,,,,,,,,,
 53,"Parse the Sales Data:
-Read the provided JSON file containing 100 rows of sales data. Despite the truncated data (specifically the missing id), you must accurately extract the sales figures from each row. Sum the sales values across all 100 rows to provide a single aggregate figure that represents the total sales recorded. What is the total sales value?",q53_json_sales,"json, sales, total, extract, parse",q-parse-partial-json.jsonl,,,,,"curl -X POST ""http://localhost:8000/api/""   -H ""Content-Type: multipart/form-data""   -F ""question=Parse the Sales Data, Read the provided JSON file containing 100 rows of sales data. Despite the truncated data, you must accurately extract the sales figures from each row. Sum the sales values across all 100 rows to provide a single aggregate figure that represents the total sales recorded. What is the total sales value?""   -F ""file=@q-parse-partial-json.jsonl",
+Read the provided JSON file containing 100 rows of sales data. Despite the truncated data (specifically the missing id), you must accurately extract the sales figures from each row. Sum the sales values across all 100 rows to provide a single aggregate figure that represents the total sales recorded. What is the total sales value?",q53_json_sales,"json, aggregate, total, extract, parse",q-parse-partial-json.jsonl,,,,,"curl -X POST ""http://localhost:8000/api/""   -H ""Content-Type: multipart/form-data""   -F ""question=Parse the Sales Data, Read the provided JSON file containing 100 rows of sales data. Despite the truncated data, you must accurately extract the sales figures from each row. Sum the sales values across all 100 rows to provide a single aggregate figure that represents the total sales recorded. What is the total sales value?""   -F ""file=@q-parse-partial-json.jsonl",
 54,"As a data analyst at DataSure Technologies, you have been tasked with developing a script that processes a large JSON log file and counts the number of times a specific key, represented by the placeholder AWSH, appears in the JSON structure. How many times does AWSH appear as a key? Output the total number of occurrences",q54_key_count,"count, times, json, appear, key",q-extract-nested-json-keys.json,,,,,"curl -X POST ""http://localhost:8000/api/"" \
   -H ""Content-Type: multipart/form-data"" \
   -F ""question=As a data analyst at DataSure Technologies, you have been tasked with developing a script that processes a large JSON log file and counts the number of times a specific key, represented by the placeholder AWSH, appears in the JSON structure. How many times does AWSH appear as a key? Output the total number of occurrences"" \
