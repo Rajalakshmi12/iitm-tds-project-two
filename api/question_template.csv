@@ -49,10 +49,12 @@ What's the result when you paste the JSON at tools-in-data-science.pages.dev/jso
 13,,,,,,,GA1,,,
 14,,,,,,,GA1,,,
 15,,,,,,,GA1,,,
-16,,,,,,,GA1,,,
-17,,,,,,,GA1,,,
-18,"There is a tickets table in a SQLite database that has columns type, units, and price. Each row is a customer bid for a concert ticket. What is the total sales of all the items in the ""Gold"" ticket type? Write SQL to calculate it.",q18_sqlite_sales,"sqlite, units, ticket, type",,,,GA1,,,
-19,"Write documentation in Markdown for an **imaginary** analysis of the number of steps you walked each day for a week, comparing over time and with friends. The Markdown must include",q19_markdown_gen,"write, documentation, markdown",,,,GA2,"# Introduction
+16,"Download and extract it. Use mv to move all files under folders into an empty folder. Then rename all files replacing each digit with the next. 1 becomes 2, 9 becomes 0, a1b9c.txt becomes a2b0c.txt. What does running grep . * | LC_ALL=C sort | sha256sum in bash on that folder show?",q16_mv_rename,"mv, rename, sha256sum",,,,GA1,,,
+17,"Download  and extract it. It has 2 nearly identical files, a.txt and b.txt, with the same number of lines. How many lines are different between a.txt and b.txt?",q17_identical_lines,"identical, lines, different, between",Done,,,GA1,8,"curl -X POST ""http://localhost:8000/api/"" \
+-H ""Content-Type: multipart/form-data"" \
+-F ""question=Download  and extract it. It has 2 nearly identical files, a.txt and b.txt, with the same number of lines. How many lines are different between a.txt and b.txt?""   -F ""file=@q17-compare-files.zip""",
+18,"There is a tickets table in a SQLite database that has columns type, units, and price. Each row is a customer bid for a concert ticket. What is the total sales of all the items in the ""Gold"" ticket type? Write SQL to calculate it.",q18_sqlite_sales,"sqlite, units, ticket, type",Done,,,GA1,,,
+19,"Write documentation in Markdown for an **imaginary** analysis of the number of steps you walked each day for a week, comparing over time and with friends. The Markdown must include",q19_markdown_gen,"write, documentation, markdown",Done,,,GA2,"# Introduction
 It's my journey on my everyday walking habit
 
 ## Methodology
@@ -90,13 +92,13 @@ def not_hello_world():
 20,"Download the image below and compress it losslessly to an image that is less than 1,500 bytes.
 By losslessly, we mean that every pixel in the new image should be identical to the original image.
 
-Upload your losslessly compressed image (less than 1,500 bytes)",q20_image_compress,"compress, compressed, image, losslessly",,,,GA2,,"curl -X POST ""http://localhost:8000/api/""   -H ""Content-Type: multipart/form-data""   -F ""question=Download the image below and compress it losslessly to an image that is less than 1,500 bytes. By losslessly, we mean that every pixel in the new image should be identical to the original image. Upload your losslessly compressed image, less than 1,500 bytes""   -F ""file=@shapes.png""",
+Upload your losslessly compressed image (less than 1,500 bytes)",q20_image_compress,"compress, compressed, image, losslessly",Done,,,GA2,,"curl -X POST ""http://localhost:8000/api/""   -H ""Content-Type: multipart/form-data""   -F ""question=Download the image below and compress it losslessly to an image that is less than 1,500 bytes. By losslessly, we mean that every pixel in the new image should be identical to the original image. Upload your losslessly compressed image, less than 1,500 bytes""   -F ""file=@shapes.png""",
 21,"Publish a page using GitHub Pages that showcases your work. Ensure that your email address 23ds3000149@ds.study.iitm.ac.in is in the page's HTML.
 
 GitHub pages are served via CloudFlare which obfuscates emails. So, wrap your email address inside a:
 
 <!--email_off-->23ds3000149@ds.study.iitm.ac.in<!--/email_off-->
-What is the GitHub Pages URL? It might look like: https://[USER].github.io/[REPO]/",,,,,,GA2,https://rajalakshmi12.github.io/Git-TDS-Sem4,,
+What is the GitHub Pages URL? It might look like: https://[USER].github.io/[REPO]/",q21_github_page,"github, pages, address",,,,GA2,https://rajalakshmi12.github.io/Git-TDS-Sem4,,
 22,"Let's make sure you can access Google Colab. Run this program on Google Colab, allowing all required access to your email ID: 23ds3000149@ds.study.iitm.ac.in.
 
 Some code given
@@ -217,7 +219,7 @@ rating: The IMDb user rating for the movie.",q39_imdb_rating,"Retrieve, movie, r
 42,What is the minimum latitude of the bounding box of the city Chennai in the country India on the Nominatim API,q42_nominatim_box,"latitude, bounding, box, country, nominatim, latitude",Done,minimum latitude?,,GA4,12.9236939,,
 43,What is the link to the latest Hacker News post mentioning Hacker Culture having at least 70 points?,q43_hacker_points,"hacker, points, news, post",Done,points = 70,,GA4,,http://127.0.0.1:8000/api/?question=What%20is%20the%20link%20to%20the%20latest%20Hacker%20News%20post%20mentioning%20Hacker%20Culture%20having%20at%20least%2070%20points?,
 44,"Using the GitHub API, find all users located in the city Mumbai with over 120 followers.
-When was the newest user's GitHub profile created?",q44_github_user,"github, city, followers, follower, newest, profile",Soon,"number, city",,GA4,2024-03-29T06:23:16Z,,
+When was the newest user's GitHub profile created?",q44_github_user,"city, followers, follower, newest, profile",Soon,"number, city",,GA4,2024-03-29T06:23:16Z,,
 45,"Create a scheduled GitHub action that runs daily and adds a commit to your repository. The workflow should:
 
 Use schedule with cron syntax to run once per day (must use specific hours/minutes, not wildcards)
