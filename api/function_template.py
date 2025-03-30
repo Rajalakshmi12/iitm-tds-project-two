@@ -40,61 +40,59 @@ def q0_nomatch(question: str = None):
 
 # Q16
 def q16_mv_rename(question: str = Form(...), file: UploadFile = File(...)):
-    return {
-        "answer": "q16_mv_rename"
-    }
+    try:
+        with tempfile.TemporaryDirectory() as temp_dir:
+            zip_path = os.path.join(temp_dir, file.filename)
 
+            # Save uploaded ZIP file
+            with open(zip_path, 'wb') as buffer:
+                shutil.copyfileobj(file.file, buffer)
 
-# Q21
-def q21_github_page(question: str = None):
-    GITHUB_USERNAME = "Rajalakshmi12"
-    GITHUB_USERNAME = os.getenv("GITHUB_USERNAME")
-        
-    GITHUB_TOKEN = os.getenv("GITHUB_TOKEN")
-    REPO_NAME = "GitHub-TDS-page-email-only"
+            # Extract ZIP
+            with zipfile.ZipFile(zip_path, 'r') as zip_ref:
+                zip_ref.extractall(temp_dir)
 
-    # Minimal HTML content
-    html_content = "<!--email_off-->23ds3000149@ds.study.iitm.ac.in<!--/email_off-->"
-    encoded_content = base64.b64encode(html_content.encode("utf-8")).decode("utf-8")
+            # Create a new flat folder
+            flat_dir = os.path.join(temp_dir, "flat")
+            os.makedirs(flat_dir, exist_ok=True)
 
-    # --- Create repo ---
-    headers = {
-        "Authorization": f"token {GITHUB_TOKEN}",
-        "Accept": "application/vnd.github.v3+json"
-    }
-    create_repo = requests.post(
-        "https://api.github.com/user/repos",
-        headers=headers,
-        json={"name": REPO_NAME, "private": False, "auto_init": False}
-    )
-    if create_repo.status_code not in [200, 201]:
+            # Move and rename all files into flat_dir
+            for root, _, files in os.walk(temp_dir):
+                for filename in files:
+                    full_path = os.path.join(root, filename)
+
+                    # Skip our own output and zip file
+                    if full_path.startswith(flat_dir) or full_path == zip_path:
+                        continue
+
+                    # Rename: shift digits (1→2, ..., 9→0)
+                    def shift_digits(name):
+                        return ''.join(
+                            str((int(c) + 1) % 10) if c.isdigit() else c
+                            for c in name
+                        )
+
+                    new_filename = shift_digits(filename)
+                    dest_path = os.path.join(flat_dir, new_filename)
+                    shutil.copy2(full_path, dest_path)
+
+            # Simulate: grep . * | LC_ALL=C sort | sha256sum
+            all_lines = []
+            for fname in sorted(os.listdir(flat_dir)):
+                path = os.path.join(flat_dir, fname)
+                if os.path.isfile(path):
+                    with open(path, 'r', encoding='utf-8', errors='ignore') as f:
+                        for line in f:
+                            line = line.rstrip('\n')
+                            all_lines.append(f"{fname}:{line}")
+
+            all_lines.sort()
+            joined = '\n'.join(all_lines) + '\n'
+            sha256_hash = hashlib.sha256(joined.encode('utf-8')).hexdigest()
+
+            return {"answer": sha256_hash}
+
+    except Exception as e:
         return {
-            "answer": "404 create_repo"
-        }
-
-    # --- Upload index.html to gh-pages branch ---
-    upload_url = f"https://api.github.com/repos/{GITHUB_USERNAME}/{REPO_NAME}/contents/index.html"
-    upload_payload = {
-        "message": "Add index.html with email",
-        "content": encoded_content,
-        "branch": "gh-pages"
-    }
-    upload = requests.put(upload_url, headers=headers, json=upload_payload)
-    if upload.status_code not in [200, 201]:
-        return {
-            "answer": "404 upload"
-        }
-
-    # --- Enable GitHub Pages ---
-    pages_url = f"https://api.github.com/repos/{GITHUB_USERNAME}/{REPO_NAME}/pages"
-    pages_payload = {"source": {"branch": "gh-pages", "path": "/"}}
-    pages = requests.post(pages_url, headers=headers, json=pages_payload)
-
-    if pages.status_code in [201, 204]:
-        return {
-            "answer": f"https://{GITHUB_USERNAME}.github.io/{REPO_NAME}/"
-        }
-    else:
-        return {
-            "answer": 404
-        }
+            "answer": str(e)
+            }
