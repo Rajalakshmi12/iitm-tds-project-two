@@ -113,16 +113,14 @@ def q52_apache_bytes(question: str = Form(...), file: UploadFile = File(...)):
         if ip_data:
             top_ip, max_bytes = max(ip_data.items(), key=lambda x: x[1])
             return {
-                "answer": max_bytes,
-                "top_ip": top_ip
-            }
+                "answer": max_bytes
+                }
         else:
             return {"answer": 0, "note": "No matching records"}
 
     except Exception as e:
         return {
-            "answer": "error",
-            "error": str(e)
+            "answer": str(e) 
         }
 
 
