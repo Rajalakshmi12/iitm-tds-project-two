@@ -74,7 +74,7 @@ async def ask_question(question: str = Form(..., title="User Question"),file: Up
     """Finds the closest question from CSV based on keyword matches and returns the corresponding function name."""
     try:
         module_path = "api.function_template"
-        functions_with_file = ["q8_extract_csv", "q9_json_sort", "q16_mv_rename", "q17_identical_lines", "q20_image_compress","q23_pixels_brightness", "q30_token_count", "q32_extract_text","q53_json_sales", "q54_key_count",  "q57_reconstruct_image"]
+        functions_with_file = ["q8_extract_csv", "q9_json_sort", "q15_date_size", "q16_mv_rename", "q17_identical_lines", "q20_image_compress","q23_pixels_brightness", "q30_token_count", "q32_extract_text","q53_json_sales", "q51_apache_get", "q52_apache_bytes", "q54_key_count",  "q57_reconstruct_image"]
 
         csv_path = os.path.join(os.path.dirname(__file__), "question_template.csv")
         df = load_questions(csv_path)

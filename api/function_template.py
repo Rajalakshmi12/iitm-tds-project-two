@@ -21,12 +21,16 @@ from PIL import Image
 import numpy as np
 import colorsys
 import shutil
+import gzip
 import sqlite3
 import numpy as np
 from datetime import datetime, timedelta
+from datetime import timezone
+from dateutil import parser as date_parser
 from fastapi import FastAPI, File, UploadFile, Form
 from fastapi.responses import JSONResponse
 from io import BytesIO
+from collections import defaultdict
 from fastapi import Form, File, UploadFile
 import tempfile, shutil, os, zipfile, subprocess, requests
 
@@ -38,61 +42,87 @@ def q0_nomatch(question: str = None):
         "answer": "q0_nomatch"
     } 
 
-# Q16
-def q16_mv_rename(question: str = Form(...), file: UploadFile = File(...)):
+# Q51
+def q51_apache_get(question: str = Form(...), file: UploadFile = File(...)):
     try:
         with tempfile.TemporaryDirectory() as temp_dir:
-            zip_path = os.path.join(temp_dir, file.filename)
+            gz_path = f"{temp_dir}/{file.filename}"
+            with open(gz_path, "wb") as f_out:
+                shutil.copyfileobj(file.file, f_out)
 
-            # Save uploaded ZIP file
-            with open(zip_path, 'wb') as buffer:
-                shutil.copyfileobj(file.file, buffer)
+            with gzip.open(gz_path, "rt", encoding="utf-8", errors="ignore") as f:
+                log_data = f.readlines()
 
-            # Extract ZIP
-            with zipfile.ZipFile(zip_path, 'r') as zip_ref:
-                zip_ref.extractall(temp_dir)
+        count = 0
+        url_filter = "/telugu/"
+        t_start_hour = 11
+        t_end_hour = 20
 
-            # Create a new flat folder
-            flat_dir = os.path.join(temp_dir, "flat")
-            os.makedirs(flat_dir, exist_ok=True)
+        log_pattern = re.compile(
+            r'(\S+) \S+ \S+ \[([^\]]+)\] "(\S+) (\S+) (\S+)" (\d+) (\d+|-) "(.*?)" "(.*?)" (\S+) (\S+)')
 
-            # Move and rename all files into flat_dir
-            for root, _, files in os.walk(temp_dir):
-                for filename in files:
-                    full_path = os.path.join(root, filename)
+        for line in log_data:
+            try:
+                match = log_pattern.match(line)
+                if match:
+                    ip, timestamp, method, url, protocol, status, size, referer, user_agent, vhost, server = match.groups()
+                    log_time = datetime.strptime(timestamp, "%d/%b/%Y:%H:%M:%S %z")
 
-                    # Skip our own output and zip file
-                    if full_path.startswith(flat_dir) or full_path == zip_path:
-                        continue
+                    if (
+                        method == "GET" and
+                        url.startswith(url_filter) and
+                        200 <= int(status) < 300 and
+                        log_time.weekday() == 0 and
+                        t_start_hour <= log_time.hour < t_end_hour
+                    ):
+                        count += 1
+            except:
+                continue
 
-                    # Rename: shift digits (1→2, ..., 9→0)
-                    def shift_digits(name):
-                        return ''.join(
-                            str((int(c) + 1) % 10) if c.isdigit() else c
-                            for c in name
-                        )
-
-                    new_filename = shift_digits(filename)
-                    dest_path = os.path.join(flat_dir, new_filename)
-                    shutil.copy2(full_path, dest_path)
-
-            # Simulate: grep . * | LC_ALL=C sort | sha256sum
-            all_lines = []
-            for fname in sorted(os.listdir(flat_dir)):
-                path = os.path.join(flat_dir, fname)
-                if os.path.isfile(path):
-                    with open(path, 'r', encoding='utf-8', errors='ignore') as f:
-                        for line in f:
-                            line = line.rstrip('\n')
-                            all_lines.append(f"{fname}:{line}")
-
-            all_lines.sort()
-            joined = '\n'.join(all_lines) + '\n'
-            sha256_hash = hashlib.sha256(joined.encode('utf-8')).hexdigest()
-
-            return {"answer": sha256_hash}
+        return {
+            "answer": count
+        }
 
     except Exception as e:
         return {
             "answer": str(e)
+        }
+
+# Q52
+def q52_apache_bytes(question: str = Form(...), file: UploadFile = File(...)):
+    try:
+        with tempfile.TemporaryDirectory() as temp_dir:
+            gz_path = f"{temp_dir}/{file.filename}"
+            with open(gz_path, "wb") as f_out:
+                shutil.copyfileobj(file.file, f_out)
+
+            with gzip.open(gz_path, "rt", encoding="utf-8", errors="ignore") as f:
+                log_data = f.readlines()
+
+        ip_data = defaultdict(int)
+        date_filter = "07/May/2024"
+        url_filter = "/kannada/"
+
+        for line in log_data:
+            match = re.match(r'(\S+) \S+ \S+ \[([^\]]+)\] "(\S+) (\S+) (\S+)" (\d+) (\d+|-) .*', line)
+            if match:
+                ip, timestamp, method, url, protocol, status, size = match.groups()
+                if date_filter in timestamp and url.startswith(url_filter) and size.isdigit():
+                    ip_data[ip] += int(size)
+
+        if ip_data:
+            top_ip, max_bytes = max(ip_data.items(), key=lambda x: x[1])
+            return {
+                "answer": max_bytes,
+                "top_ip": top_ip
             }
+        else:
+            return {"answer": 0, "note": "No matching records"}
+
+    except Exception as e:
+        return {
+            "answer": "error",
+            "error": str(e)
+        }
+
+
