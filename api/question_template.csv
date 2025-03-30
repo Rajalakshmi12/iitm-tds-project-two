@@ -98,7 +98,7 @@ Upload your losslessly compressed image (less than 1,500 bytes)",q20_image_compr
 GitHub pages are served via CloudFlare which obfuscates emails. So, wrap your email address inside a:
 
 <!--email_off-->23ds3000149@ds.study.iitm.ac.in<!--/email_off-->
-What is the GitHub Pages URL? It might look like: https://[USER].github.io/[REPO]/",q21_github_page,"github, pages, address",,,,GA2,https://rajalakshmi12.github.io/Git-TDS-Sem4,,
+What is the GitHub Pages URL? It might look like: https://[USER].github.io/[REPO]/",q21_github_page,"github, pages, address",,,,GA2,https://rajalakshmi12.github.io/Git-TDS-Sem4,"curl -X POST ""http://localhost:8000/api/""   -H ""Content-Type: multipart/form-data""   -F 'question=Publish a page using GitHub Pages that showcases your work. Ensure that your email address <!--email_off-->23ds3000149@ds.study.iitm.ac.in<!--/email_off--> is in the page HTML. GitHub Pages are served via CloudFlare which obfuscates emails. What is the GitHub Pages URL? It might look like: https://[USER].github.io/[REPO]/'",
 22,"Let's make sure you can access Google Colab. Run this program on Google Colab, allowing all required access to your email ID: 23ds3000149@ds.study.iitm.ac.in.
 
 Some code given
