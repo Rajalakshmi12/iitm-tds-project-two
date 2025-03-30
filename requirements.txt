@@ -15,4 +15,3 @@ numpy
 python-multipart
 tiktoken
 Image
-sqlite3

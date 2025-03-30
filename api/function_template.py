@@ -28,7 +28,6 @@ from fastapi import FastAPI, File, UploadFile, Form
 from fastapi.responses import JSONResponse
 from io import BytesIO
 
-
 #def q23_pixels_brightness(question: str = Form(...), file: UploadFile = File(...)):
 
 # Q0
