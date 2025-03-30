@@ -69,7 +69,7 @@ def q21_github_page(question: str = None):
     )
     if create_repo.status_code not in [200, 201]:
         return {
-            "answer": 404
+            "answer": "404 create_repo"
         }
 
     # --- Upload index.html to gh-pages branch ---
@@ -82,7 +82,7 @@ def q21_github_page(question: str = None):
     upload = requests.put(upload_url, headers=headers, json=upload_payload)
     if upload.status_code not in [200, 201]:
         return {
-            "answer": 404
+            "answer": "404 upload"
         }
 
     # --- Enable GitHub Pages ---
