@@ -100,7 +100,7 @@ async def ask_question(question: str = Form(..., title="User Question"),file: Up
                                 function_output = function_to_call(question=question, file=file)
                         else:
                             function_output = function_to_call(question=question)
-                        return {"function_name": function_name, "output": function_output}
+                        return {"output": function_output}
                     else:
                         raise HTTPException(status_code=404, detail=f"Function {function_name} {function_to_call} not found in {module_path}")
 
