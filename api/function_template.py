@@ -661,7 +661,7 @@ def q22_google_colab(question: str = Form(...), file: UploadFile = File(...)):
         year = 2024
         result = hashlib.sha256(f"{email} {year}".encode()).hexdigest()[-5:]
         return {
-            "answer": result
+            "answer": f"{result}"
         }
     
 # Q23
