@@ -656,13 +656,14 @@ def q22_google_colab(question: str = Form(...), file: UploadFile = File(...)):
             }
 
     except Exception as e:
+        import hashlib
         email = "23ds3000149@ds.study.iitm.ac.in"
         year = 2024
         result = hashlib.sha256(f"{email} {year}".encode()).hexdigest()[-5:]
         return {
             "answer": result
         }
-		
+    
 # Q23
 def q23_pixels_brightness(question: str = Form(...), file: UploadFile = File(...)):
     with temp_dir.TemporaryDirectory() as temp_dir:
