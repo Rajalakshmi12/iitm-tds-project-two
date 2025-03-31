@@ -44,23 +44,22 @@ def q0_nomatch(question: str = None):
 
 # Q1
 def q1_code_vsc(question: str = None):
-    return check_prettier()
-    # return "Success Raji Project 2 you got 100"
+    return {
+        "answer": "q1_code_vsc"
+    }    # return "Success Raji Project 2 you got 100"
     
 # Q3
 def check_prettier(question: str = None):
     current_dir = os.path.dirname(os.path.abspath(__file__))
     new_dir = os.path.join(current_dir, "node_modules/.bin/prettier")
     
-    return os.path.exists(new_dir)
-
     # Check if the folder exists
-    if os.path.isdir(folder_path):
-        return f"The folder '{folder_path}' exists."
+    if os.path.isdir(new_dir):
+        return f"The folder '{new_dir}' exists."
 
 
     try:
-        # prettier_bin = "/vercel/path0/api/node_modules/.bin/prettier"
+        prettier_bin = "/api/node_modules/.bin/prettier"
         if not (os.path.exists(prettier_bin)):
             result = subprocess.run(
                 ["npx", "prettier", "--version"],
@@ -115,7 +114,9 @@ def calculate_sha256(content, question: str = None):
         
         # Compute SHA-256 hash using Python (cross-platform)
         sha256_hash = hashlib.sha256(result.stdout.encode()).hexdigest()
-        return f'{sha256_hash}'
+        return {
+            "answer": sha256_hash'
+        }
     
     except Exception as e:
         return str(e)
@@ -125,8 +126,7 @@ def q3_readme_shasum(question: str = None):
     file_path_1 = os.path.join(current_dir, 'api')
     file_path_2 = os.path.join(file_path_1, 'README.md')
     
-    return os.path.exists(file_path_2)
-    #file_path = 'README.md'
+    file_path = '/api/README.md'
     
     if not os.path.exists(file_path):
         return "Error: File not found"
@@ -135,7 +135,9 @@ def q3_readme_shasum(question: str = None):
         content = f.read()
     
     sha256_hash = calculate_sha256(content)
-    return({"answer": sha256_hash})
+    return  {
+        "answer": sha256_hash
+        }
     
 # Q4
 def q4_array_constraint(question: str = None):
