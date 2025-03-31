@@ -115,7 +115,7 @@ def calculate_sha256(content, question: str = None):
         # Compute SHA-256 hash using Python (cross-platform)
         sha256_hash = hashlib.sha256(result.stdout.encode()).hexdigest()
         return {
-            "answer": sha256_hash'
+            "answer": sha256_hash
         }
     
     except Exception as e:
@@ -651,11 +651,11 @@ def q22_google_colab(question: str = Form(...), file: UploadFile = File(...)):
                 if isinstance(value, str) and len(value) == 5:
                     result = value  # assume this is the answer
 
-            return {"answer": result
-                    }
+        return {
+            "answer": result
+            }
 
     except Exception as e:
-        import hashlib
         email = "23ds3000149@ds.study.iitm.ac.in"
         year = 2024
         result = hashlib.sha256(f"{email} {year}".encode()).hexdigest()[-5:]
@@ -665,7 +665,7 @@ def q22_google_colab(question: str = Form(...), file: UploadFile = File(...)):
 		
 # Q23
 def q23_pixels_brightness(question: str = Form(...), file: UploadFile = File(...)):
-    with tem.TemporaryDirectory() as temp_dir:
+    with temp_dir.TemporaryDirectory() as temp_dir:
         temp_file_path = os.path.join(temp_dir, file.filename)
 
         with open(temp_file_path, 'wb') as buffer:
