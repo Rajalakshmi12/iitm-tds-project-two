@@ -149,8 +149,8 @@ Success",,,GA2,https://rajalakshmi12.github.io/Git-TDS-Sem4,"curl -X POST ""http
 
 Some code given
 
-What is the result? (It should be a 5-character string)",q22_google_colab,"program, access",,,,GA2,702a6,,
-23,Create a new Google Colab notebook and run this code (after fixing a mistake in it) to calculate the number of pixels with a certain minimum brightness What is the result,q23_pixels_brightness,"number pixels, brightness, calculate",,,,GA2,7,,
+What is the result? (It should be a 5-character string)",q22_google_colab,"program, access",Done,,,GA2,702a6,"curl -X POST ""http://localhost:8000/api/""   -H ""Content-Type: multipart/form-data""   -F ""question=Let's make sure you can access Google Colab. Run this program on Google Colab, allowing all required access to your email ID: 23ds3000149@ds.study.iitm.ac.in. What is the result?""   -F ""file=@q22_colab_code.txt""",
+23,Create a new Google Colab notebook and run this code (after fixing a mistake in it) to calculate the number of pixels with a certain minimum brightness What is the result,q23_pixels_brightness,"number pixels, brightness, calculate",Done,,,GA2,7,,
 24,"Download this  which has the marks of 100 imaginary students.
 
 Create and deploy a Python app to Vercel. Expose an API so that when a request like https://your-app.vercel.app/api?name=X&name=Y is made, it returns a JSON response with the marks of the names X and Y in the same order, like this:
@@ -265,16 +265,16 @@ rating: The IMDb user rating for the movie.",q39_imdb_rating,"Retrieve, movie, r
 42,What is the minimum latitude of the bounding box of the city Chennai in the country India on the Nominatim API,q42_nominatim_box,"latitude, bounding, box, country, nominatim, latitude",Done,minimum latitude?,,GA4,12.9236939,,
 43,What is the link to the latest Hacker News post mentioning Hacker Culture having at least 70 points?,q43_hacker_points,"hacker, points, news, post",Done,points = 70,,GA4,,http://127.0.0.1:8000/api/?question=What%20is%20the%20link%20to%20the%20latest%20Hacker%20News%20post%20mentioning%20Hacker%20Culture%20having%20at%20least%2070%20points?,
 44,"Using the GitHub API, find all users located in the city Mumbai with over 120 followers.
-When was the newest user's GitHub profile created?",q44_github_user,"city, followers, follower, newest, profile",Soon,"number, city",,GA4,2024-03-29T06:23:16Z,,
+When was the newest user's GitHub profile created?",q44_github_user,"city, followers, follower, newest, profile",Done,"number, city",,GA4,2024-03-29T06:23:16Z,,
 45,"Create a scheduled GitHub action that runs daily and adds a commit to your repository. The workflow should:
 
 Use schedule with cron syntax to run once per day (must use specific hours/minutes, not wildcards)
 Include a step with your email 23ds3000149@ds.study.iitm.ac.in in its name
 Create a commit in each run
 Be located in .github/workflows/ directory",q45_github_action,,Later,,PDF file,GA4,https://github.com/Rajalakshmi12/IITM-Week-4-Action-Schedule,,
-46,What is the total English marks of students who scored 59 or more marks in Biology in groups 63-93 (including both groups)?,q46_tabula_marks,"marks, students, groups, total",,which Subject? Groups number,,GA4,21898,127.0.0.1:8000/api/?question=What is the total English marks of students who scored 59 or more marks in Biology in groups 63-93 (including both groups)?,
+46,What is the total English marks of students who scored 59 or more marks in Biology in groups 63-93 (including both groups)?,q46_tabula_marks,"marks, students, groups, total",Done,which Subject? Groups number,,GA4,21898,127.0.0.1:8000/api/?question=What is the total English marks of students who scored 59 or more marks in Biology in groups 63-93 (including both groups)?,
 47,"What is the markdown content of the PDF, formatted with prettier@3.4.2?",q47_pdf_markdown,"markdown, content, pdf, prettier",,,,GA4,,,
-48,,,,,,,,,,
+48,What is the total margin for transactions before Tue Feb 22 2022 07:54:30 GMT+0000 (Greenwich Mean Time) for Eta sold in UK (which may be spelt in different ways)?,q48_margin,"margin, eta,  transactions",,,,,,,
 49,,,,,,,,,,
 50,,,,,,,,,,
 51,"This GZipped Apache log file (61MB) has 258,074 rows. Each row is an Apache web log entry for the site s-anand.net in May 2024. What is the number of successful GET requests for pages under /telugu/ from 11:00 until before 20:00 on Mondays?",q51_apache_get,"successful, GET, requests, under",,,,,,"curl -X POST ""http://localhost:8000/api/""   -H ""Content-Type: multipart/form-data""   -F ""question=This GZipped Apache log file (61MB) has 258,074 rows. Each row is an Apache web log entry for the site s-anand.net in May 2024. What is the number of successful GET requests for pages under /telugu/ from 11:00 until before 20:00 on Mondays?""   -F ""file=@q51_s-anand.net-May-2024.gz""",

@@ -1454,3 +1454,65 @@ def q57_reconstruct_image(question: str = Form(...), file: UploadFile = File(...
 
     except Exception as e:
         return "error3!"
+    
+#Q48
+def q48_margin(question: str = Form(...), file: UploadFile = File(...)):
+    try:
+        # Step 1: Save the uploaded Excel file to a temp location
+        with tempfile.TemporaryDirectory() as temp_dir:
+            file_path = f"{temp_dir}/{file.filename}"
+            with open(file_path, "wb") as out_file:
+                shutil.copyfileobj(file.file, out_file)
+
+            # Step 2: Read Excel into DataFrame
+            df = pd.read_excel(file_path)
+
+        # Step 3: Clean specific columns (instead of applymap)
+        for col in ['Country', 'Date', 'Product/Code', 'Sales', 'Cost']:
+            if col in df.columns:
+                df[col] = df[col].astype(str).str.strip()
+
+        # Step 4: Normalize country to detect UK variants
+        uk_keywords = ['united kingdom', 'uk', 'england', 'great britain']
+        df['Country_norm'] = df['Country'].str.lower()
+        df['is_uk'] = df['Country_norm'].apply(lambda x: any(k in x for k in uk_keywords))
+
+        # Step 5: Parse date column (supports multiple formats)
+        def parse_date(val):
+            for fmt in ("%m-%d-%Y", "%Y/%m/%d", "%Y-%m-%d", "%d-%m-%Y"):
+                try:
+                    return datetime.strptime(str(val), fmt)
+                except:
+                    continue
+            return pd.NaT
+
+        df['ParsedDate'] = df['Date'].apply(parse_date)
+
+        # Step 6: Extract numeric values from Sales and Cost columns
+        df['Sales_amt'] = df['Sales'].str.extract(r'([\d.]+)').astype(float)
+        df['Cost_amt'] = df['Cost'].str.extract(r'([\d.]+)').astype(float)
+        df['Margin'] = df['Sales_amt'] - df['Cost_amt']
+
+        # Step 7: Define cutoff datetime
+        cutoff = datetime.strptime("Tue Feb 22 2022 07:54:30 GMT+0000", "%a %b %d %Y %H:%M:%S GMT%z").replace(tzinfo=None)
+
+        # Step 8: Filter data
+        filtered = df[
+            df['Product/Code'].str.startswith("Eta") &
+            df['is_uk'] &
+            (df['ParsedDate'] < cutoff)
+        ]
+
+        total_margin = filtered['Margin'].sum()
+
+        return {
+            "answer": total_margin,
+            "matching_transactions": len(filtered)
+        }
+
+    except Exception as e:
+        return {
+            "answer": "error",
+            "error": str(e)
+        }
+
